@@ -1,3 +1,11 @@
 .container {
   width: 100%
 }
+
+.navbar-custom {
+  background-color: #13A89E;
+}
+
+.custom-logo {
+  background-color: #ffffff;
+}

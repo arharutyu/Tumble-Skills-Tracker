@@ -6,8 +6,8 @@ import './NavBar.css'
 
 const NavBar = () => {
   return (
-    <Navbar expand="md" fixed="top" >
-        <Navbar.Brand href="#home"><img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="100"></img></Navbar.Brand>
+    <Navbar className="navbar-custom" expand="md" fixed="top" >
+        <Navbar.Brand href="#home" className="custom-logo"><img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="100"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Container>
