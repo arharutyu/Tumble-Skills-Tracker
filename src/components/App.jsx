@@ -1,0 +1,26 @@
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
+import NavBar from './NavBar'
+import './App.css'
+import Home from '../routes/Home'
+import Students from '../routes/Students'
+import Skills from '../routes/Skills'
+import NewAssessment from '../routes/NewAssessment'
+import Users from '../routes/Users'
+
+function App() {
+
+  return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route path='/' element={<Home/>} />
+        <Route path='/students' element={<Students/>} />
+        <Route path='/skills' element={<Skills />} />
+        <Route path='/new' element={<NewAssessment />} />
+        <Route path='/' element={<Users />} />
+      </Routes>
+    </>
+  )
+}
+
+export default App

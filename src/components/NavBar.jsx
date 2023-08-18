@@ -10,11 +10,11 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav variant="pills" defaultActiveKey="/home" className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Students</Nav.Link>
-            <Nav.Link href="#link">Skills</Nav.Link>
-            <Nav.Link href="#link">New Assessment</Nav.Link>
-            <Nav.Link href="#link" eventKey="disabled" disabled>Users</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/students">Students</Nav.Link>
+            <Nav.Link href="/skills">Skills</Nav.Link>
+            <Nav.Link href="/new">New Assessment</Nav.Link>
+            <Nav.Link href="/users" eventKey="disabled" disabled>Users</Nav.Link>
           </Nav>
         </Navbar.Collapse>
     </Navbar>
