@@ -1,7 +1,8 @@
 import React from 'react'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import StudentCard from '../components/StudentCard';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import StudentCard from '../components/StudentCard'
+import SearchText from '../components/SearchText'
 
 const Students = () => {
   let isAdmin = true
@@ -28,6 +29,7 @@ const Students = () => {
 
   return ( <>
     <h1>Students</h1>
+    <SearchText />
     <Row xs={1} md={4} lg={6} className="g-4">
       {students.map(student => (
         <Col>
