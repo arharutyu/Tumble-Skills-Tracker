@@ -1,0 +1,12 @@
+#login {
+  min-width: fit-content !important;
+  background-color: #ffffff !important;
+  padding: 4rem 2rem !important;
+  border-radius: 10px;
+  border: #13A89E solid;
+}
+
+body {
+  background-color: #F6A81C !important;
+}
+
