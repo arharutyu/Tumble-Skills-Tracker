@@ -1,9 +1,16 @@
 #login {
   min-width: fit-content !important;
   background-color: #ffffff !important;
-  padding: 4rem 2rem !important;
+  padding: 4rem 1rem !important;
   border-radius: 10px;
   border: #13A89E solid;
+  margin: auto;
+  justify-items: center;
+}
+
+#login-form {
+  max-width: 350px;
+  margin: auto;
 }
 
 body {

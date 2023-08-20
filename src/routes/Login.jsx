@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import './Login.css'
-import { Row } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Login = () => {
   const nav = useNavigate()
@@ -25,13 +26,10 @@ const Login = () => {
     // TODO: Fix logo sizing when resizing window (esp large size)
 
   return (<>
-  <Container fluid="sm" id='login'>
-    <Row>
-      <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" max-width="300"></img>
+  <Container fluid="md" id='login'>
+        <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="250"></img>
       <h1>Tumble Skills Tracker Login</h1>
-    </Row>
-    <Row>
-      <Form onSubmit={submit}>
+      <Form onSubmit={submit} id='login-form'>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Username:</Form.Label>
         <Form.Control type="input" placeholder="Enter username" />
@@ -44,7 +42,6 @@ const Login = () => {
         Submit
       </Button>
     </Form>
-    </Row>
   </Container>
   </>
   )
