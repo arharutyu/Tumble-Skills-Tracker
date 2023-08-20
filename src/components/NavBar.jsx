@@ -11,7 +11,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Container>
-          <Nav justify variant="pills" defaultActiveKey="/home" className="me-auto">
+          <Nav fill variant="pills" defaultActiveKey="/home" className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/students">Students</Nav.Link>
             <Nav.Link href="/skills">Skills</Nav.Link>
