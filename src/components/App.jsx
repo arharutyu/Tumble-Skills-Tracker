@@ -11,6 +11,8 @@ import Login from '../routes/Login'
 function App() {
   let isLoggedIn = false
 
+  // TODO: Work out context for logged in users.
+
   if (!isLoggedIn) {
     return (
       <>
