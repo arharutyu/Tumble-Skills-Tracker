@@ -9,16 +9,16 @@ const Home = () => {
     <h1>Home</h1>
     <Row xs={1} md={2} lg={4} className="g-4">
         <Col>
-          <ContentCard title="Students" text="students" image="" link="students" />
+          <ContentCard title="Students" text="See all current students, search for a student, and view inidividual student profiles." image="" link="students" />
         </Col>
         <Col>
-          <ContentCard title="Skills" text="skills" image="" link="skills" />
+          <ContentCard title="Skills" text="skills" image="" link="See all current skills and levels." />
         </Col>
         <Col>
-          <ContentCard title="New Assessment" text="new assessment" image="" link="new" />
+          <ContentCard title="New Assessment" text="Create new assessment." image="" link="new" />
         </Col>
         <Col>
-          <ContentCard title="Users" text="users" image="" link="users" />
+          <ContentCard title="Users" text="See all user details." image="" link="users" />
         </Col>
     </Row>
   </>
