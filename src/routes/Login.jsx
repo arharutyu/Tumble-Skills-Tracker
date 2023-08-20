@@ -19,7 +19,9 @@ const Login = () => {
     }}
 
   return (<>
-    <h1>Login</h1>
+    <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="300"></img>
+    <h1>Tumble Skills Tracker Login</h1>
+    <br></br>
     <Form onSubmit={submit}>
     <Form.Group className="mb-3" controlId="formBasicEmail">
       <Form.Label>Username:</Form.Label>
