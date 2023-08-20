@@ -9,7 +9,8 @@ import Users from '../routes/Users'
 import Login from '../routes/Login'
 
 function App() {
-  let isLoggedIn = false
+  let isLoggedIn = true
+
   if (!isLoggedIn) {
     return (
       <>
