@@ -1,12 +1,14 @@
 import React from 'react'
-import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ContentCard from '../components/ContentCard';
 
 const Home = () => {
+  // TODO: Get isAdmin from logged in user details
   let isAdmin = false
 
+  // Cards to render for all user types
+  // TODO: Images
   let cards = [{
     title: "Students", 
     text:"See all current students, search for a student, and view inidividual student profiles.",
@@ -27,6 +29,7 @@ const Home = () => {
   }
   ]
 
+  // Admin only cards
   const usersCard =   {
     title: "Users", 
     text:"See all user details.",
@@ -34,13 +37,16 @@ const Home = () => {
     link:"users"
   }
 
+  // Define large breakpoint # of cards in row
   let lgBp = 3
 
+  // If isadmin push card to array & increase breakpoint #
   if (isAdmin) {
     cards.push(usersCard)
     lgBp ++
   }
 
+  // return cards by mapping over array. Bp's defined in Row.
   return ( <>
     <h1>Home</h1>
     <Row xs={1} md={2} lg={lgBp} className="g-4">
