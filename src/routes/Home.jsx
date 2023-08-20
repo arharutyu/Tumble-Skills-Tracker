@@ -5,7 +5,7 @@ import ContentCard from '../components/ContentCard';
 
 const Home = () => {
   // TODO: Get isAdmin from logged in user details
-  let isAdmin = false
+  let isAdmin = true
 
   // Cards to render for all user types
   // TODO: Images
