@@ -6,10 +6,19 @@ import Students from '../routes/Students'
 import Skills from '../routes/Skills'
 import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
+import Login from '../routes/Login'
 
 function App() {
-
-  return (
+  let isLoggedIn = false
+  if (!isLoggedIn) {
+    return (
+      <>
+        <Login />
+      </>
+    )
+  }
+  else {
+    return (
     <>
       <NavBar />
       <Routes>
@@ -21,7 +30,7 @@ function App() {
         <Route path='*' element={<h3>Page not found</h3>}></Route>
       </Routes>
     </>
-  )
+  )}
 }
 
 export default App
