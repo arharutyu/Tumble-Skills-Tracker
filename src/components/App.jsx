@@ -14,18 +14,17 @@ function App() {
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
     const checkLogin = sessionStorage.getItem('accessToken') !== null;
-    console.log(checkLogin);
-  });
+    if (checkLogin) {
+    setIsLoggedIn(true);}
+  }, []);
 
-  //TODO: Work out why Login component doesn't rerender with isLoggedIn change
-  
   return (
     <>
       {isLoggedIn ? (
         <>
           <NavBar />
           <Routes>
-            <Route path="/h" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/students" element={<Students />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/new" element={<NewAssessment />} />
