@@ -11,22 +11,25 @@ import Login from '../routes/Login'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
-    const checkLogin = sessionStorage.getItem('accessToken') !== null;
+    const checkLogin = sessionStorage.getItem('accessToken') !== null
     if (checkLogin) {
-    setIsLoggedIn(true);
+    setIsLoggedIn(true)
+    setIsAdmin(sessionStorage.getItem('isAdmin') === 'true')
     // Automatically delete accessToken after 6 hours (21600000 milliseconds)
     setTimeout(() => {
-      sessionStorage.removeItem('accessToken');
-      setIsLoggedIn(false);
-    }, 21600000);
+      sessionStorage.removeItem('accessToken')
+      setIsLoggedIn(false)
+    }, 21600000)
   }
   }, []);
 
   return (
     <>
-      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} />}
+      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />}
       {isLoggedIn && (
         <>
           <NavBar />
