@@ -26,30 +26,24 @@ function App() {
 
   return (
     <>
-      {isLoggedIn && <NavBar />}
-      <Routes>
-        {isLoggedIn && (<>
+      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} />}
+      {isLoggedIn && (
+        <>
+          <NavBar />
+          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/students" element={<Students />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/new" element={<NewAssessment />} />
             <Route path="/users" element={<Users />} />
-            <Route path="/login" element={<Navigate to="/" />} />
-            </>
-        )}
-
-        {!isLoggedIn && (
-        <>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="*" element={<Navigate to="/login" />} />
+            <Route path="*" element={<h3>Page not found</h3>} />
+          </Routes>
         </>
       )}
-          <Route path="*" element={<h3>Page not found</h3>} />
-    </Routes>
     </>
   );
 }
+
 
 export default App;
 
