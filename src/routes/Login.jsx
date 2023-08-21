@@ -13,7 +13,6 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
   const [message, setMessage] = useState('');
 
   async function submit(event) {
-    // TODO: Make this work
     event.preventDefault()
     const authEndpoint = 'http://localhost:4001/login';
 
