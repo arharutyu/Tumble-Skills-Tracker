@@ -1,4 +1,5 @@
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, useParams } from 'react-router-dom'
 import NavBar from './NavBar'
 import './App.css'
 import Home from '../routes/Home'
@@ -9,31 +10,35 @@ import Users from '../routes/Users'
 import Login from '../routes/Login'
 
 function App() {
-  let isLoggedIn = false
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  useEffect(() => {
+    // Check if accessToken is stored in sessionStorage
+    const checkLogin = sessionStorage.getItem('accessToken') !== null;
+    console.log(checkLogin);
+  });
 
-  // TODO: Work out context for logged in users.
-
-  if (!isLoggedIn) {
-    return (
-      <>
-        <Login />
-      </>
-    )
-  }
-  else {
-    return (
+  //TODO: Work out why Login component doesn't rerender with isLoggedIn change
+  
+  return (
     <>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/students' element={<Students/>} />
-        <Route path='/skills' element={<Skills />} />
-        <Route path='/new' element={<NewAssessment />} />
-        <Route path='/' element={<Users />} />
-        <Route path='*' element={<h3>Page not found</h3>}></Route>
-      </Routes>
+      {isLoggedIn ? (
+        <>
+          <NavBar />
+          <Routes>
+            <Route path="/h" element={<Home />} />
+            <Route path="/students" element={<Students />} />
+            <Route path="/skills" element={<Skills />} />
+            <Route path="/new" element={<NewAssessment />} />
+            <Route path="/users" element={<Users />} />
+            <Route path="*" element={<h3>Page not found</h3>} />
+          </Routes>
+        </>
+      ) : (
+        <Login />
+      )}
     </>
-  )}
+  );
 }
 
 export default App
+

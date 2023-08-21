@@ -10,7 +10,8 @@ const Login = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+  const [message, setMessage] = useState('');
+
   async function submit(event) {
     // TODO: Make this work
     event.preventDefault()
@@ -33,15 +34,20 @@ const Login = () => {
     .then(response => {
       if (response.ok) {
         // Get the JWT token from the response header
-        const token = response.headers.get('accessToken');
-        // Store the token in local storage or state for later use
-        // For example, you can use localStorage.setItem('token', token);
-        nav('/');
+        return response.json();
       } else {
         // Handle authentication error
-         
-        console.error('Authentication failed');
+        return response.json().then(errorData => {
+          setMessage(errorData.message);
+          throw new Error(errorData.message);
+        });
       }
+    })
+    .then(data => {
+      sessionStorage.setItem('accessToken', data.accessToken)
+
+      // TODO: Work out why login component doesn't refresh
+      nav("/");
     })
     .catch(error => {
       console.error('Error during authentication:', error);
@@ -50,6 +56,7 @@ const Login = () => {
   
 
   return (<>
+    <div>{message}</div>
     <Container fluid="md" id='login'>
           <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="250"></img>
         <h1>Tumble Skills Tracker Login</h1>
