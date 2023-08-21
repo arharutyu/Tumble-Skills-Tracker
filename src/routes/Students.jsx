@@ -4,9 +4,7 @@ import Row from 'react-bootstrap/Row'
 import StudentCard from '../components/StudentCard'
 import SearchText from '../components/SearchText'
 
-const Students = () => {
-  let isAdmin = true
-
+const Students = ({isAdmin}) => {
   let students = [
     { name: 'John' },
     { name: 'John' },
