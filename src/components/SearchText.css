@@ -1,0 +1,17 @@
+#search {
+  padding: 0.5rem;
+  margin: 0;
+  display: inline;
+}
+
+#input-text {
+  width: 60%;
+}
+
+#button {
+  width: fit-content;
+}
+
+.row {
+  justify-content: center;
+}
