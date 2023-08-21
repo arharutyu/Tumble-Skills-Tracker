@@ -46,7 +46,7 @@ const Login = ({ setIsLoggedIn }) => {
     .then(data => {
       sessionStorage.setItem('accessToken', data.accessToken);
       setIsLoggedIn(true); // Set isLoggedIn to true
-      nav("/home");
+      nav("/");
     })
     .catch(error => {
       console.error('Error during authentication:', error);
@@ -55,10 +55,10 @@ const Login = ({ setIsLoggedIn }) => {
   
 
   return (<>
-    <div>{message}</div>
     <Container fluid="md" id='login'>
           <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="250"></img>
         <h1>Tumble Skills Tracker Login</h1>
+        {message && <div className="error-message">{message}</div>}
         <Form onSubmit={submit} id='login-form'>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Username:</Form.Label>
