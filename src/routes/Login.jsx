@@ -15,7 +15,7 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
   async function submit(event) {
     // TODO: Make this work
     event.preventDefault()
-    const authEndpoint = 'http://localhost:4001/auth/login';
+    const authEndpoint = 'http://localhost:4001/login';
 
     // Create a request payload
     const credentials = {
