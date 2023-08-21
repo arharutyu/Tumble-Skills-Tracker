@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import './Login.css'
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const nav = useNavigate()
 
   const [username, setUsername] = useState('');
@@ -44,10 +44,9 @@ const Login = () => {
       }
     })
     .then(data => {
-      sessionStorage.setItem('accessToken', data.accessToken)
-
-      // TODO: Work out why login component doesn't refresh
-      nav("/");
+      sessionStorage.setItem('accessToken', data.accessToken);
+      setIsLoggedIn(true); // Set isLoggedIn to true
+      nav("/home");
     })
     .catch(error => {
       console.error('Error during authentication:', error);
