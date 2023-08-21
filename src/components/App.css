@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+.card {
+  min-width: fit-content;
+  padding: auto;
+  margin: auto;
+}
+
 
 /* 
 .logo {

@@ -1,12 +1,12 @@
 import Card from 'react-bootstrap/Card'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const StudentCard = ({ name }) => {
+const StudentCard = ({ name, id }) => {
   return ( <>
     <Card>
-      <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Card.Title><Link to="/students/:id">{name}</Link></Card.Title>
       </Card.Body>
     </Card>
     </>
