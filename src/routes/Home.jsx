@@ -3,10 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ContentCard from '../components/ContentCard';
 
-const Home = () => {
-  // TODO: Get isAdmin from logged in user details
-  let isAdmin = false
-
+const Home = ({isAdmin}) => {
   // Cards to render for all user types
   // TODO: Images
   let cards = [{
@@ -50,8 +47,8 @@ const Home = () => {
   return ( <>
     <h1>Home</h1>
     <Row xs={1} md={2} lg={lgBp} className="g-4">
-      {cards.map(card => (
-        <Col>
+      {cards.map((card, index) => (
+        <Col key={index}>
           <ContentCard title={card.title} text={card.text} image={card.image} link={card.link} />
         </Col>
       ))}
