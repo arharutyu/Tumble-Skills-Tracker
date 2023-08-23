@@ -6,8 +6,7 @@ import './SearchText.css'
 
 import React from 'react'
 
-const SearchText = () => {
-  let text = "Search for student"
+const SearchText = ({ text }) => {
 
   return (
     <>

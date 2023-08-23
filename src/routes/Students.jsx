@@ -29,7 +29,7 @@ const Students = () => {
 
   return ( <>
     <h1>Students</h1>
-    <SearchText />
+    <SearchText text="Search for a student" />
     <Row xs={1} md={4} lg={6} className="g-4">
       {students.map(student => (
         <Col>
