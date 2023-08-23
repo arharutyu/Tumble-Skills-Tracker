@@ -1,0 +1,26 @@
+#login {
+  min-width: fit-content !important;
+  background-color: #ffffff !important;
+  padding: 4rem 1rem !important;
+  border-radius: 10px;
+  border: #13A89E solid;
+  margin: auto;
+  justify-items: center;
+}
+
+#login-form {
+  max-width: 350px;
+  margin: auto;
+}
+
+.error-message {
+  padding: 20px 0;
+  font-weight: bold; 
+  color: red; 
+}
+
+
+body {
+  background-color: #F6A81C;
+}
+
