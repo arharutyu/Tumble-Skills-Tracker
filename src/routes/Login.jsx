@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import './Login.css'
 
-const Login = ({ setIsLoggedIn, setIsAdmin }) => {
+const Login = ({ setIsLoggedIn, setUser }) => {
   const nav = useNavigate()
 
   const [username, setUsername] = useState('');
@@ -44,9 +44,8 @@ const Login = ({ setIsLoggedIn, setIsAdmin }) => {
     })
     .then(data => {
       sessionStorage.setItem('accessToken', data.accessToken)
-      sessionStorage.setItem('isAdmin', data.user.isAdmin)
       setIsLoggedIn(true); // Set isLoggedIn to true
-      setIsAdmin(data.user.isAdmin)
+      setUser(data.user)
       nav("/");
     })
     .catch(error => {

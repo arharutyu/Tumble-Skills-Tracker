@@ -8,17 +8,17 @@ import Skills from '../routes/Skills'
 import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
 import Login from '../routes/Login'
+import StudentProfile from './StudentProfile'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [user, setUser] = useState([])
 
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
     const checkLogin = sessionStorage.getItem('accessToken') !== null
     if (checkLogin) {
     setIsLoggedIn(true)
-    setIsAdmin(sessionStorage.getItem('isAdmin') === 'true')
     // Automatically delete accessToken after 6 hours (21600000 milliseconds)
     setTimeout(() => {
       sessionStorage.removeItem('accessToken')
@@ -27,15 +27,17 @@ function App() {
   }
   }, []);
 
+
   return (
     <>
-      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setIsAdmin={setIsAdmin} />}
+      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />}
       {isLoggedIn && (
         <>
           <NavBar />
           <Routes>
-            <Route path="/" element={<Home isAdmin />} />
-            <Route path="/students" element={<Students isAdmin />} />
+            <Route path="/" element={<Home isAdmin={user.isAdmin} />} />
+            <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
+            <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/new" element={<NewAssessment />} />
             <Route path="/users" element={<Users />} />
