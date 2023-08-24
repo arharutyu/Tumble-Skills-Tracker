@@ -7,10 +7,11 @@ import { useParams } from 'react-router-dom'
 
 const Students = ({isAdmin}) => {
   const [students, setStudents] = useState([])
-
+    console.log(isAdmin)
   const addStudent = { name: 'Add Student' }
 
   if (isAdmin) {
+
     students.unshift(addStudent)
   }
   let accessToken = sessionStorage.getItem('accessToken')
