@@ -9,6 +9,7 @@ import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
 import Login from '../routes/Login'
 import StudentProfile from './StudentProfile'
+import StartAssessment from '../routes/StartAssessment'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -45,6 +46,7 @@ function App() {
             <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/new" element={<NewAssessment />} />
+            <Route path="/new/start" element={<StartAssessment />} />
             <Route path="/users" element={<Users />} />
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>
