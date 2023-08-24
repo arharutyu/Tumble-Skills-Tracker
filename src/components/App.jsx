@@ -41,7 +41,7 @@ function App() {
           <NavBar isAdmin={user.isAdmin} />
           
           <Routes>
-            <Route path="/" element={<Home isAdmin={user.isAdmin} />} />
+            <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} />} />
             <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
             <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
             <Route path="/skills" element={<Skills />} />
