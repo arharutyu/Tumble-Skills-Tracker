@@ -1,24 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import '../components/App.css'
-import SearchText from '../components/SearchText'
-import { STUDENTS } from '../api/endpoints'
-import ListGroup from 'react-bootstrap/ListGroup'
+import GetLevel from '../components/GetLevel'
+import GetStudent from '../components/GetStudent'
+import { get } from '../api/api'
+import StudentCard from '../components/StudentCard'
 
 const NewAssessment = () => {
-  const [searchStudents, setSearchStudents] = useState([])
+
+  const [student, setStudent] = useState([])
+  const [name, setName] = useState('')
+  const [assessSkills, setAssessSkills] = useState([])
+  console.log(student)
+  console.log(assessSkills)
+
+  if (student.length > 0) {
+      (async () => {
+        let endpoint = `/students/${student}`
+        const data = await get(endpoint)
+        setStudent(data)
+        setName(data.name)
+        })()
+  }
 
   return (
     <>
   <Container className="contcontainer">
     <h1>New Assessment</h1>
-    <SearchText text="Search for a student" endpoint={STUDENTS} set={setSearchStudents}  />
-    <ListGroup>
-      {searchStudents.map((student, index) => (
-        <ListGroup.Item key={index}>{student.name}</ListGroup.Item>
-      ))
-      }
-    </ListGroup>
+    <GetStudent setStudent={setStudent} />
+    {name && <StudentCard name={name} />}
+    <GetLevel setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
   </Container>
   </>
   )
