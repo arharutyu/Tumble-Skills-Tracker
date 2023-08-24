@@ -39,6 +39,7 @@ function App() {
       {isLoggedIn && (
         <>
           <NavBar />
+          
           <Routes>
             <Route path="/" element={<Home isAdmin={user.isAdmin} />} />
             <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
@@ -48,6 +49,7 @@ function App() {
             <Route path="/users" element={<Users />} />
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>
+          
         </>
       )}
     </>

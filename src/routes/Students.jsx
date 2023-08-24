@@ -4,6 +4,8 @@ import Row from 'react-bootstrap/Row'
 import StudentCard from '../components/StudentCard'
 import SearchText from '../components/SearchText'
 import { useParams } from 'react-router-dom'
+import Container from 'react-bootstrap/Container'
+import '../components/App.css'
 
 const Students = ({isAdmin}) => {
   const [students, setStudents] = useState([])
@@ -32,6 +34,7 @@ const Students = ({isAdmin}) => {
   }, [])
 
   return ( <>
+  <Container className="contcontainer">
     <h1>Students</h1>
     <SearchText text="Search for a student" />
     <Row xs={1} md={4} lg={6} className="g-4">
@@ -41,6 +44,7 @@ const Students = ({isAdmin}) => {
         </Col>
       ))}
     </Row>
+    </Container>
     </>
   )
 }

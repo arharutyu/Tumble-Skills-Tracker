@@ -4,6 +4,8 @@ import SearchText from '../components/SearchText'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StudentCard from '../components/StudentCard'
+import '../components/App.css'
+import Container from 'react-bootstrap/Container'
 
 
 const Users = () => {
@@ -17,6 +19,7 @@ const Users = () => {
   const addUser = { name: 'Add new user' }
   
   return (<>
+  <Container className="contcontainer">
     <h1>Users</h1>
     <SearchText text="Search for a user" />
     <Row xs={1} md={3} lg={4} className="g-4">
@@ -27,6 +30,7 @@ const Users = () => {
         </Col>
       ))}
     </Row>
+    </Container>
     </>
   )
 }

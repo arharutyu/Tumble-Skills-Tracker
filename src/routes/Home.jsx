@@ -2,6 +2,7 @@ import React from 'react'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ContentCard from '../components/ContentCard';
+import Container from 'react-bootstrap/Container'
 
 const Home = ({isAdmin}) => {
   // Cards to render for all user types
@@ -45,6 +46,7 @@ const Home = ({isAdmin}) => {
 
   // return cards by mapping over array. Bp's defined in Row.
   return ( <>
+  <Container className="contcontainer">
     <h1>Home</h1>
     <Row xs={1} md={2} lg={lgBp} className="g-4">
       {cards.map((card, index) => (
@@ -53,6 +55,7 @@ const Home = ({isAdmin}) => {
         </Col>
       ))}
     </Row>
+    </Container>
   </>
   )
 }
