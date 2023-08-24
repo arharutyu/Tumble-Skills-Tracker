@@ -55,16 +55,16 @@ async function post(endpoint, body) {
         'Authorization': `${accessToken}`,
       },
       body: JSON.stringify(body),
-    });
+    })
 
     if (!res.ok) {
-      throw new Error(`Request failed with status: ${res.status}`);
+      throw new Error(`Request failed with status: ${res.status}`)
     }
 
-    return res;
+    return res
   } catch (error) {
-    console.error('Error while making POST request:', error);
-    throw error;
+    console.error('Error while making POST request:', error)
+    throw error
   }
 }
 

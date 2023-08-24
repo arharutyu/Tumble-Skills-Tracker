@@ -13,13 +13,16 @@ const StartAssessment = () => {
   console.log(student._id)
   console.log(assessed)
 
-
+  // Fetch student and assessment data from localStorage on component mount
   useEffect(() => {
+    // Get student and assessment data from localStorage, or use empty arrays as default
     setStudent(JSON.parse(localStorage.getItem('student')) || [])
     setAssessSkills(JSON.parse(localStorage.getItem('assessment')) || [])
   }, [])
 
+  // Handle radio button changes
   const handleRadioChange = (_id, score) => {
+    // Filter out the current skill from assessed data and add the new score
     const updatedAssessed = assessed.filter((item) => item.skill !== _id);
     updatedAssessed.push({ skill: _id, score });
     setAssessed(updatedAssessed);

@@ -5,12 +5,14 @@ import { skills } from '../api/api'
 import ListGroup from 'react-bootstrap/ListGroup'
 
 const GetLevel = ({setAssessSkills, assessSkills}) => {
-  // const [assessSkills, setAssessSkills] = useState([])
   const [level, setLevel] = useState('')
 
+  // Effect to fetch assessment skills based on the selected level
   useEffect(() => {
+    // Check if the selected level is a valid integer
     if (Number.isInteger(level)) {
       (async () => {
+        // Fetch skills based on the selected level and update assessSkills state
         let res = await skills(level)
         setAssessSkills(res)
       })()
