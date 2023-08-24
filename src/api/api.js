@@ -9,7 +9,7 @@ async function get(endpoint) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'accessToken': `${accessToken}`,
+          'Authorization': `${accessToken}`,
         }
       }
       )
@@ -23,7 +23,7 @@ async function search(endpoint, search) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'accessToken': `${accessToken}`,
+          'Authorization': `${accessToken}`,
         }
       }
       )
@@ -37,7 +37,7 @@ async function skills(level) {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'accessToken': `${accessToken}`,
+          'Authorization': `${accessToken}`,
         }
       }
       )
