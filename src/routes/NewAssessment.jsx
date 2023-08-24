@@ -30,7 +30,7 @@ const NewAssessment = () => {
     <GetStudent setStudent={setStudent} />
     {name && <StudentCard name={name} />}
     <GetLevel setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
-    {name && (assessSkills.length > 0) && <StartButton />}
+    {name && (assessSkills.length > 0) && <StartButton student={student} assessSkills={assessSkills} />}
   </Container>
   </>
   )
