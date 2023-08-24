@@ -38,7 +38,7 @@ function App() {
       {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />}
       {isLoggedIn && (
         <>
-          <NavBar />
+          <NavBar isAdmin={user.isAdmin} />
           
           <Routes>
             <Route path="/" element={<Home isAdmin={user.isAdmin} />} />
