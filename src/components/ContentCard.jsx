@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
+import {Link} from 'react-router-dom'
 
 const ContentCard = ({title, text, image, link}) => {
 
@@ -13,7 +14,7 @@ const ContentCard = ({title, text, image, link}) => {
             <Card.Text>
               {text}
             </Card.Text>
-            <Button variant="primary" href={link}>Go to {title}</Button>
+            <Link to={link}><Button variant="primary">Go to {title}</Button></Link>
           </Card.Body>
         </Card>
     </>
