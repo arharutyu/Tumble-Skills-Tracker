@@ -24,7 +24,7 @@ const StudentProfile = ({isAdmin}) => {
     setStudent(data)
     })()
   }, [])
-  console.log(student)
+
   return (
     <>
     <Container className="contcontainer">

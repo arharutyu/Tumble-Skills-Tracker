@@ -13,7 +13,6 @@ import StudentProfile from './StudentProfile'
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState([])
-  console.log(user)
   
   useEffect(() => {
     setUser(JSON.parse(sessionStorage.getItem('user')) || [])

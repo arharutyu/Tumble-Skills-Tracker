@@ -20,7 +20,7 @@ const Students = ({isAdmin}) => {
       setStudents(data)
       })()
   }, [])
-  console.log(students)
+
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>
