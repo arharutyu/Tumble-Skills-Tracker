@@ -6,33 +6,21 @@ import SearchText from '../components/SearchText'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import '../components/App.css'
+import { get } from '../api/api.js'
+import { STUDENTS } from '../api/endpoints.js'
 
 const Students = ({isAdmin}) => {
   const [students, setStudents] = useState([])
-    console.log(isAdmin)
+  
   const addStudent = { name: 'Add Student' }
-
-  if (isAdmin) {
-
-    students.unshift(addStudent)
-  }
-  let accessToken = sessionStorage.getItem('accessToken')
 
   useEffect(() => {
     (async () => {
-      const res = await fetch('http://localhost:4001/students', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'accessToken': `${accessToken}`,
-        }
-      }
-      )
-      const data = await res.json()
+      const data = await get(STUDENTS)
       setStudents(data)
       })()
   }, [])
-  
+  console.log(students)
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>
