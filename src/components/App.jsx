@@ -13,7 +13,7 @@ import StudentProfile from './StudentProfile'
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState([])
-
+  console.log(user)
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
     const checkLogin = sessionStorage.getItem('accessToken') !== null
