@@ -1,4 +1,4 @@
-import { API_BASE_URL, STUDENTS } from './endpoints.js'
+import { API_BASE_URL } from './endpoints.js'
 
 
 const accessToken = sessionStorage.getItem('accessToken')
