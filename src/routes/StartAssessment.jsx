@@ -3,13 +3,14 @@ import Container from 'react-bootstrap/Container'
 import StudentCard from '../components/StudentCard'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
+import SubmitAsssessment from '../components/SubmitAsssessment'
 
 const StartAssessment = () => {
   const [student, setStudent] = useState([])
   const [assessSkills, setAssessSkills] = useState([])
   const [assessed, setAssessed] = useState([])
 
-  console.log(assessSkills)
+  console.log(student._id)
   console.log(assessed)
 
 
@@ -18,9 +19,9 @@ const StartAssessment = () => {
     setAssessSkills(JSON.parse(localStorage.getItem('assessment')) || [])
   }, [])
 
-  const handleRadioChange = (skillName, score) => {
-    const updatedAssessed = assessed.filter((item) => item.skillName !== skillName);
-    updatedAssessed.push({ skillName, score });
+  const handleRadioChange = (_id, score) => {
+    const updatedAssessed = assessed.filter((item) => item.skill !== _id);
+    updatedAssessed.push({ skill: _id, score });
     setAssessed(updatedAssessed);
   }
 
@@ -54,8 +55,8 @@ const StartAssessment = () => {
                   inline
                   name={`option-${index}`}
                   aria-label={`score-${score}`}
-                  checked={assessed.find((item) => item.skillName === skill.skillName)?.score === score}
-                  onChange={() => handleRadioChange(skill.skillName, score)}
+                  checked={assessed.find((item) => item.skill === skill._id)?.score === score}
+                  onChange={() => handleRadioChange(skill._id, score)}
                 />
               </td>
             ))}
@@ -63,6 +64,7 @@ const StartAssessment = () => {
           ))}
         </tbody>
         </Table>
+        <SubmitAsssessment assessed={assessed} student={student._id} />
       </Container>
     </>
   )

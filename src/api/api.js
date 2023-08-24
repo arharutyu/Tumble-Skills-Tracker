@@ -45,4 +45,27 @@ async function skills(level) {
       return data
 }
 
-export { get, search, skills }
+// POST request
+async function post(endpoint, body) {
+  try {
+    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      throw new Error(`Request failed with status: ${res.status}`);
+    }
+
+    return res;
+  } catch (error) {
+    console.error('Error while making POST request:', error);
+    throw error;
+  }
+}
+
+export { get, search, skills, post }
