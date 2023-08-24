@@ -44,8 +44,9 @@ const Login = ({ setIsLoggedIn, setUser }) => {
     })
     .then(data => {
       sessionStorage.setItem('accessToken', data.accessToken)
-      setIsLoggedIn(true); // Set isLoggedIn to true
-      if (data.user) {setUser(data.user)}
+      sessionStorage.setItem('user', data.user)
+      setIsLoggedIn(true)
+      setUser(data.user)
       nav("/");
     })
     .catch(error => {

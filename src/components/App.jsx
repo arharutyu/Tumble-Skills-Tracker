@@ -14,6 +14,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState([])
   console.log(user)
+  
+  useEffect(() => {
+    setUser(JSON.parse(sessionStorage.getItem('user')) || [])
+  }, [])
+
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
     const checkLogin = sessionStorage.getItem('accessToken') !== null
