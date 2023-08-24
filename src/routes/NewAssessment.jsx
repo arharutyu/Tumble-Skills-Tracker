@@ -5,9 +5,9 @@ import GetLevel from '../components/GetLevel'
 import GetStudent from '../components/GetStudent'
 import { get } from '../api/api'
 import StudentCard from '../components/StudentCard'
+import StartButton from '../components/StartButton'
 
 const NewAssessment = () => {
-
   const [student, setStudent] = useState([])
   const [name, setName] = useState('')
   const [assessSkills, setAssessSkills] = useState([])
@@ -30,6 +30,7 @@ const NewAssessment = () => {
     <GetStudent setStudent={setStudent} />
     {name && <StudentCard name={name} />}
     <GetLevel setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
+    {name && (assessSkills.length > 0) && <StartButton />}
   </Container>
   </>
   )
