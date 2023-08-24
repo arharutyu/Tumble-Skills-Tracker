@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import StudentCard from '../components/StudentCard'
 import SearchText from '../components/SearchText'
-import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import '../components/App.css'
 
@@ -32,7 +32,7 @@ const Students = ({isAdmin}) => {
       setStudents(data)
       })()
   }, [])
-
+  
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>
@@ -40,7 +40,10 @@ const Students = ({isAdmin}) => {
     <Row xs={1} md={4} lg={6} className="g-4">
       {students.map((student, index) => (
         <Col key={index}>
-          <StudentCard name={student.name} />
+          <StudentCard name={
+            <Link to={`/students/${student._id}`}>
+            {student.name} </Link>
+            } />
         </Col>
       ))}
     </Row>
