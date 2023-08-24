@@ -3,6 +3,7 @@ import { API_BASE_URL } from './endpoints.js'
 
 const accessToken = sessionStorage.getItem('accessToken')
 
+// GET request
 async function get(endpoint) {
   const res = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'GET',
@@ -16,6 +17,7 @@ async function get(endpoint) {
       return data
 }
 
+// GET request with query parameters
 async function search(endpoint, search) {
   const res = await fetch(`${API_BASE_URL}${endpoint}/results?search=${search}`, {
         method: 'GET',
