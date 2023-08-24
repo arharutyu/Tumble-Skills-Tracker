@@ -1,8 +1,9 @@
 import { API_BASE_URL, STUDENTS } from './endpoints.js'
 
-async function get(endpoint) {
-  let accessToken = sessionStorage.getItem('accessToken')
 
+const accessToken = sessionStorage.getItem('accessToken')
+
+async function get(endpoint) {
   const res = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'GET',
         headers: {
@@ -15,4 +16,17 @@ async function get(endpoint) {
       return data
 }
 
-export { get }
+async function search(endpoint, search) {
+  const res = await fetch(`${API_BASE_URL}${endpoint}/results?search=${search}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'accessToken': `${accessToken}`,
+        }
+      }
+      )
+      const data = await res.json()
+      return data
+}
+
+export { get, search }

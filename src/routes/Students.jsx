@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container'
 import '../components/App.css'
 import { get } from '../api/api.js'
 import { STUDENTS } from '../api/endpoints.js'
+import AddCard from '../components/AddCard'
 
 const Students = ({isAdmin}) => {
   const [students, setStudents] = useState([])
@@ -21,11 +22,15 @@ const Students = ({isAdmin}) => {
       })()
   }, [])
 
+
+  // TODO: Add link property input to AddCard with link to add new student page
+
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>
-    <SearchText text="Search for a student" />
+    <SearchText text="Search for a student" endpoint={STUDENTS} set={setStudents}  />
     <Row xs={1} md={4} lg={6} className="g-4">
+      <Col key="add"><AddCard type="Student" /></Col>
       {students.map((student, index) => (
         <Col key={index}>
           <StudentCard name={
