@@ -31,4 +31,18 @@ async function search(endpoint, search) {
       return data
 }
 
-export { get, search }
+// GET skills from level
+async function skills(level) {
+  const res = await fetch(`${API_BASE_URL}/skills/level/${level}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'accessToken': `${accessToken}`,
+        }
+      }
+      )
+      const data = await res.json()
+      return data
+}
+
+export { get, search, skills }
