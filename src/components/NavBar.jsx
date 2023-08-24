@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,14 +13,14 @@ const NavBar = ({isAdmin}) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Container>
           <Nav fill variant="pills" className="me-auto">
-            <Nav.Link as={NavLink} to="/" exact activeClassName="active-link">Home</Nav.Link>
-            <Nav.Link as={NavLink} to="/students" activeClassName="active-link">Students</Nav.Link>
-            <Nav.Link as={NavLink} to="/skills" activeClassName="active-link">Skills</Nav.Link>
-            <Nav.Link as={NavLink} to="/new" activeClassName="active-link">New Assessment</Nav.Link>
+            <Nav.Link as={NavLink} to="/" activeclassname="active-link">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/students" activeclassname="active-link">Students</Nav.Link>
+            <Nav.Link as={NavLink} to="/skills" activeclassname="active-link">Skills</Nav.Link>
+            <Nav.Link as={NavLink} to="/new" activeclassname="active-link">New Assessment</Nav.Link>
             <Nav.Link 
               as={NavLink} 
               to="/users" 
-              activeClassName="active-link"
+              activeclassname="active-link"
               disabled={!isAdmin}
               >Users</Nav.Link>
           </Nav>
