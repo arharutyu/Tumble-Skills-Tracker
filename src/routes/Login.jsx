@@ -44,7 +44,7 @@ const Login = ({ setIsLoggedIn, setUser }) => {
     })
     .then(data => {
       sessionStorage.setItem('accessToken', data.accessToken)
-      sessionStorage.setItem('user', data.user)
+      sessionStorage.setItem('user', JSON.stringify(data.user))
       setIsLoggedIn(true)
       setUser(data.user)
       nav("/");
