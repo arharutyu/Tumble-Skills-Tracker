@@ -7,6 +7,7 @@ import { get } from '../api/api'
 import { STUDENTS, ASSESSMENTS } from '../api/endpoints'
 import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
+import AdminMenu from './AdminMenu'
 
 const StudentProfile = ({isAdmin}) => {
   // State to store student data
@@ -33,6 +34,7 @@ const StudentProfile = ({isAdmin}) => {
   
   return (
     <>
+    
     <Container className="contcontainer">
     <h1>Student: {student.name}</h1>
     <Card.Body>
@@ -110,6 +112,7 @@ const StudentProfile = ({isAdmin}) => {
       )}
     </Accordion>
     </Card.Body>
+    <AdminMenu />
     </Container>
     </>
   )
