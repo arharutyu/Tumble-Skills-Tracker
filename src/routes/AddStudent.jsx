@@ -9,7 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 
 
-const AddStudent = ({accessToken} ) => {
+const AddStudent = ({accessToken, isAdmin} ) => {
   const nav = useNavigate()
 
   const [name, setName] = useState('')

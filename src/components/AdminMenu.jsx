@@ -31,12 +31,8 @@ const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
           </Offcanvas.Header>
 
           <Offcanvas.Body>
-          {isAdmin ? (<>
             <p><Link to={`${type}/edit/${id}`}>Edit details</Link></p>
             <p><Link to={`${type}`} onClick={handleDelete}>Delete</Link></p>
-            </>) : (
-        <h3>You must be an admin to access this resource.</h3>
-      )}
           </Offcanvas.Body>
 
         </Offcanvas>

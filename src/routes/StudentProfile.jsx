@@ -5,8 +5,6 @@ import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { get } from '../api/api'
 import { STUDENTS, ASSESSMENTS } from '../api/endpoints'
-import Accordion from 'react-bootstrap/Accordion'
-import Table from 'react-bootstrap/Table'
 import AdminMenu from '../components/AdminMenu'
 import ViewAssessments from '../components/ViewAssessments'
 
@@ -63,7 +61,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     <Card.Body>
         <ViewAssessments assessments={assessments} isAdmin={isAdmin} />
     </Card.Body>
-    {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} /></>)}
+    {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} accessToken={accessToken} /></>)}
     </Container>
     </>
   )
