@@ -25,28 +25,34 @@ const EditStudent = ({isAdmin}) => {
       })()
     }, [])
   
+    // Handle change for Date of Birth input
     const handleDOBChange = (event) => {
       setUpdate({ ...update, DOB: event.target.value })
     }
 
+    // Format date for date input
     const formatDateForInput = (dateString) => {
       const date = new Date(dateString);
       const formattedDate = date.toISOString().split('T')[0];
       return formattedDate;
     }
 
+    // Handle change for Name input
     const handleNameChange = (event) => {
       setUpdate({ ...update, name: event.target.value });
     }
 
+     // Handle form submission
     const submit = async (event) => {
       event.preventDefault()
       if (update.name !== student.name) {
         // Update only if the name has changed
         setUpdate({ ...update, name: event.target.name.value });
       }
+      // Send PUT request to update student data
       await put(`${STUDENTS}/${studentId.id}`, update)
       console.log('PUT request done')
+      // Navigate to student's details page
       nav(`/students/${studentId.id}`)
     }
     
