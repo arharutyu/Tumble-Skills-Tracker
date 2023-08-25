@@ -10,15 +10,15 @@ import { get } from '../api/api.js'
 import { STUDENTS } from '../api/endpoints.js'
 import AddCard from '../components/AddCard'
 
-const Students = ({isAdmin}) => {
+const Students = ({isAdmin, accessToken}) => {
   const [students, setStudents] = useState([])
-  
+  console.log(accessToken)
   const addStudent = { name: 'Add Student' }
 
   // Fetch students' data on component mount
   useEffect(() => {
     (async () => {
-      const data = await get(STUDENTS)
+      const data = await get(STUDENTS, accessToken)
       setStudents(data)
       })()
   }, [])

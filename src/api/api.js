@@ -1,10 +1,7 @@
 import { API_BASE_URL } from './endpoints.js'
 
-
-const accessToken = sessionStorage.getItem('accessToken')
-
 // GET request
-async function get(endpoint) {
+async function get(endpoint, accessToken) {
   const res = await fetch(`${API_BASE_URL}${endpoint}`, {
         method: 'GET',
         headers: {
