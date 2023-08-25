@@ -28,7 +28,9 @@ const StudentProfile = ({isAdmin}) => {
     setAssessments(assessRes)
     })()
   }, [])
+
   console.log(assessments)
+  
   return (
     <>
     <Container className="contcontainer">
@@ -37,6 +39,7 @@ const StudentProfile = ({isAdmin}) => {
         <Card.Title>Student Information</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Id: {student._id}</Card.Subtitle>
       </Card.Body>
+
     <Card.Body>
           <ListGroup variant="flush">
             <ListGroup horizontal>
@@ -49,20 +52,21 @@ const StudentProfile = ({isAdmin}) => {
             </ListGroup>
           </ListGroup>
         </Card.Body>
+
     <Card.Body>
         <Card.Title>Assessments</Card.Title>
     </Card.Body>
+
     <Card.Body>
     <Accordion defaultActiveKey="0">
     {assessments.length > 0 ? (
       assessments.map((assessment, index) => {
-        const uniqueSkillLevels = []
-
+        const skillLevels = []
         assessment.skills.forEach((skill) => {
-          if (!uniqueSkillLevels.includes(skill.skill.level)) {
-            uniqueSkillLevels.push(skill.skill.level);
-          }
+          skillLevels.push(...skill.skill.levels)
         })
+      const uniqueSkillLevels = [...new Set(skillLevels)]
+      console.log(uniqueSkillLevels)
 
         return (
         <Accordion.Item eventKey={index} key={index}>
@@ -71,11 +75,11 @@ const StudentProfile = ({isAdmin}) => {
             </Accordion.Header>
           <Accordion.Body>
                 <div>
-                <strong>Completed by:</strong> {assessment.doneBy.username}</div>
+                <strong>Completed by:</strong> {assessment.doneBy.name}</div>
                 <div><strong>Level: </strong>
-                {uniqueSkillLevels.map((level) => (
-                  <span key={level}>
-                    {index > 0 && ', '}
+                {uniqueSkillLevels.map((level, levelIndex) => (
+                  <span key={levelIndex}>
+                    {levelIndex > 0 && ', '}
                     {level}
                   </span>
                 ))}</div>
