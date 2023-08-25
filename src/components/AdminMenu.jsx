@@ -4,6 +4,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { del } from '../api/api'
 import { API_BASE_URL } from '../api/endpoints'
+import adminCog from '../assets/settings.png'
 
 const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
   const nav = useNavigate()
@@ -22,7 +23,7 @@ const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow} id="admin">
-          Admin
+          <img src={adminCog} width="25px" alt="" />
         </Button>
 
         <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">

@@ -3,6 +3,10 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ContentCard from '../components/ContentCard';
 import Container from 'react-bootstrap/Container'
+import studentsIcon from '../assets/students.png'
+import skillsIcon from '../assets/skills.png'
+import assessmentIcon from '../assets/assessment.png'
+import usersIcon from '../assets/users.png'
 
 const Home = ({isAdmin, name}) => {
   // Cards to render for all user types
@@ -10,19 +14,19 @@ const Home = ({isAdmin, name}) => {
   let cards = [{
     title: "Students", 
     text:"See all current students, search for a student, and view inidividual student profiles.",
-    image:"",
+    image: studentsIcon,
     link:"students"
   },
   {
     title: "Skills", 
     text:"See all current skills and levels.",
-    image:"",
+    image:skillsIcon,
     link:"skills"
   },
   {
     title: "New Assessment", 
     text:"Create new assessment.",
-    image:"",
+    image: assessmentIcon,
     link:"new"
   }
   ]
@@ -31,7 +35,7 @@ const Home = ({isAdmin, name}) => {
   const usersCard =   {
     title: "Users", 
     text:"See all user details.",
-    image:"",
+    image: usersIcon,
     link:"users"
   }
 

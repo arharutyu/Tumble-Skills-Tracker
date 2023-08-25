@@ -8,7 +8,9 @@ const ContentCard = ({title, text, image, link}) => {
   return (
     <>
         <Card>
-          <Card.Img variant="top" src={image} />
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '110px' }}>
+          <Card.Img variant="top" src={image} style={{ width: '100px', height: '100px', borderRadius: '10%' }} />
+          </div>
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>
