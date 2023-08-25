@@ -4,7 +4,7 @@ import SearchText from '../components/SearchText'
 import { STUDENTS } from '../api/endpoints'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-const GetStudent = ({setStudent}) => {
+const GetStudent = ({setStudent, accessToken }) => {
   // state to handle search input
   const [searchStudents, setSearchStudents] = useState([])
   // state to handle selected student
@@ -23,7 +23,7 @@ const GetStudent = ({setStudent}) => {
 
   return (
     <>
-        <SearchText text="Search for a student" endpoint={STUDENTS} set={setSearchStudents}  />
+        <SearchText text="Search for a student" endpoint={STUDENTS} set={setSearchStudents} accessToken={accessToken}  />
         <ListGroup>
         {searchStudents.map((student, index) => (
           <ListGroup.Item key={index} onClick={() => handleStudentClick(student._id)}>{student.name}</ListGroup.Item>

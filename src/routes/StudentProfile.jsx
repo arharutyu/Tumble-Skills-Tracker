@@ -10,7 +10,7 @@ import Table from 'react-bootstrap/Table'
 import AdminMenu from '../components/AdminMenu'
 import ViewAssessments from '../components/ViewAssessments'
 
-const StudentProfile = ({isAdmin}) => {
+const StudentProfile = ({isAdmin, accessToken}) => {
   // State to store student data
   const [student, setStudent] = useState([])
   const [assessments, setAssessments] = useState([])
@@ -22,11 +22,11 @@ const StudentProfile = ({isAdmin}) => {
   (async () => {
     // Fetch student data from the server using the student ID
     const endpoint = `${STUDENTS}/${studentId.id}`
-    const res = await get(endpoint)
+    const res = await get(endpoint, accessToken)
     setStudent(res)
     // Fetch all assessments relevant to student
     const assessEp = `${ASSESSMENTS}/student/${studentId.id}`
-    const assessRes = await get(assessEp)
+    const assessRes = await get(assessEp, accessToken)
     setAssessments(assessRes)
     })()
   }, [])

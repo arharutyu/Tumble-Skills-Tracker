@@ -15,7 +15,7 @@ async function get(endpoint, accessToken) {
 }
 
 // GET request with query parameters
-async function search(endpoint, search) {
+async function search(endpoint, search, accessToken) {
   const res = await fetch(`${API_BASE_URL}${endpoint}/results?search=${search}`, {
         method: 'GET',
         headers: {
@@ -29,7 +29,7 @@ async function search(endpoint, search) {
 }
 
 // GET skills from level
-async function skills(level) {
+async function skills(level, accessToken) {
   const res = await fetch(`${API_BASE_URL}/skills/level/${level}`, {
         method: 'GET',
         headers: {
@@ -43,7 +43,7 @@ async function skills(level) {
 }
 
 // POST request
-async function post(endpoint, body) {
+async function post(endpoint, body, accessToken) {
   try {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'POST',
@@ -66,7 +66,7 @@ async function post(endpoint, body) {
 }
 
 // PUT request
-async function put(endpoint, body) {
+async function put(endpoint, body, accessToken) {
   try {
     const res = await fetch(`${API_BASE_URL}${endpoint}`, {
       method: 'PUT',
@@ -89,7 +89,7 @@ async function put(endpoint, body) {
 }
 
 // DELETE request
-async function del(endpoint, id) {
+async function del(endpoint, id, accessToken) {
   const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, {
         method: 'DELETE',
         headers: {

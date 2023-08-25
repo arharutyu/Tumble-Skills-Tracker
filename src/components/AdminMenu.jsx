@@ -5,7 +5,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { del } from '../api/api'
 import { API_BASE_URL } from '../api/endpoints'
 
-const AdminMenu = ({ id, type, isAdmin }) => {
+const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
   const nav = useNavigate()
   
   const [show, setShow] = useState(false)
@@ -14,7 +14,7 @@ const AdminMenu = ({ id, type, isAdmin }) => {
   const handleShow = () => setShow(true)
 
   const handleDelete = async () => {
-    await del(type, id).then(data => console.log(data))
+    await del(type, id, accessToken).then(data => console.log(data))
     console.log('Deleted')
     nav('/students')
   }

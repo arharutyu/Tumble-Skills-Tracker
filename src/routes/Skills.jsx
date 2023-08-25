@@ -5,13 +5,13 @@ import '../components/App.css'
 import { get } from '../api/api.js'
 import { SKILLS } from '../api/endpoints.js'
 
-const Skills = () => {
+const Skills = ({ accessToken }) => {
   const [data, setData] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await get(SKILLS)
+        const response = await get(SKILLS, accessToken)
         setData(response);
       } catch (error) {
         console.error('Error fetching data:', error)

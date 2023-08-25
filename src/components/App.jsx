@@ -17,44 +17,52 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState([])
   const [accessToken, setAccessToken] = useState('')
-
+  console.log(user)
+  console.log(accessToken)
   useEffect(() => {
     // Check if accessToken is stored in sessionStorage
-    const storedAccessToken = sessionStorage.getItem('accessToken') || ''
-    setAccessToken(storedAccessToken)
-    
-    const checkLogin = storedAccessToken !== ''
-    if (checkLogin) {
-    setIsLoggedIn(true)
+    // const storedAccessToken = sessionStorage.getItem('accessToken') || ''
+    // setAccessToken(storedAccessToken)
+    const storedAccessToken = sessionStorage.getItem('accessToken');
+    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+
+    if (storedAccessToken && storedUser) {
+      setAccessToken(storedAccessToken);
+      setUser(storedUser);
+      setIsLoggedIn(true);
+    }
+    // const checkLogin = accessToken !== ''
+    // if (checkLogin) {
+    // setIsLoggedIn(true)
     // Automatically delete accessToken after 6 hours (21600000 milliseconds)
     setTimeout(() => {
       sessionStorage.removeItem('accessToken')
       setIsLoggedIn(false)
     }, 21600000)
-  }
-  }, [user]);
+  
+  }, []);
 
   return (
     <>
-      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} />}
+      {!isLoggedIn && <Login setIsLoggedIn={setIsLoggedIn} setUser={setUser} setAccessToken={setAccessToken} />}
       {isLoggedIn && (
         <>
           <NavBar isAdmin={user.isAdmin} />
           
           <Routes>
-            <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} />} />
+            <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} accessToken={accessToken} />} />
             
             <Route path="/students" element={<Students isAdmin={user.isAdmin} accessToken={accessToken} />} />
-            <Route path="/students/new" element={<AddStudent isAdmin={user.isAdmin} />} />
-            <Route path="/students/edit/:id" element={<EditStudent isAdmin={user.isAdmin} />} />
-            <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
+            <Route path="/students/new" element={<AddStudent isAdmin={user.isAdmin} accessToken={accessToken} />} />
+            <Route path="/students/edit/:id" element={<EditStudent isAdmin={user.isAdmin} accessToken={accessToken} />} />
+            <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} accessToken={accessToken} />} />
 
-            <Route path="/skills" element={<Skills />} />
+            <Route path="/skills" element={<Skills accessToken={accessToken} />} />
             
-            <Route path="/new" element={<NewAssessment />} />
-            <Route path="/new/start" element={<StartAssessment />} />
+            <Route path="/new" element={<NewAssessment accessToken={accessToken} />} />
+            <Route path="/new/start" element={<StartAssessment accessToken={accessToken} />} />
             
-            <Route path="/users" element={<Users />} />
+            <Route path="/users" element={<Users accessToken={accessToken} />} />
             
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>

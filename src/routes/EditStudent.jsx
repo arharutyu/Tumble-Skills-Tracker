@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 
-const EditStudent = ({isAdmin}) => {
+const EditStudent = ({isAdmin, accessToken}) => {
   const [student, setStudent] = useState([])
   const [update, setUpdate] = useState({})
 
@@ -19,7 +19,7 @@ const EditStudent = ({isAdmin}) => {
     (async () => {
       // Fetch student data from the server using the student ID
       const endpoint = `${STUDENTS}/${studentId.id}`
-      const res = await get(endpoint)
+      const res = await get(endpoint, accessToken)
       setStudent(res)
       })()
     }, [])
@@ -49,7 +49,7 @@ const EditStudent = ({isAdmin}) => {
         setUpdate({ ...update, name: event.target.name.value });
       }
       // Send PUT request to update student data
-      await put(`${STUDENTS}/${studentId.id}`, update)
+      await put(`${STUDENTS}/${studentId.id}`, update, accessToken)
       console.log('PUT request done')
       // Navigate to student's details page
       nav(`/students/${studentId.id}`)
