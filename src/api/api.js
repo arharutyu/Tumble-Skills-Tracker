@@ -91,4 +91,18 @@ async function put(endpoint, body) {
   }
 }
 
-export { get, search, skills, post, put }
+// DELETE request
+async function del(endpoint, id) {
+  const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${accessToken}`,
+        }
+      }
+      )
+      const data = await res.json()
+      return data
+}
+
+export { get, search, skills, post, put, del }

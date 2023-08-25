@@ -23,9 +23,6 @@ const Students = ({isAdmin}) => {
       })()
   }, [])
 
-
-  // TODO: Add link property input to AddCard with link to add new student page
-
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>

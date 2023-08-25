@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { del } from '../api/api'
 
 const AdminMenu = ({ id, type }) => {
+  const nav = useNavigate()
+  
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const handleDelete = async () => {
+    await del(type, id).then(data => console.log(data))
+    console.log('Deleted')
+    nav('/students')
+  }
 
   return (
     <>
@@ -22,8 +30,8 @@ const AdminMenu = ({ id, type }) => {
           </Offcanvas.Header>
 
           <Offcanvas.Body>
-            <Link to={`/${type}/${id}/edit`}>Edit details</Link>
-            <p>Delete</p>
+            <p><Link to={`/${type}/${id}/edit`}>Edit details</Link></p>
+            <p><Link to="/students" onClick={handleDelete}>Delete</Link></p>
           </Offcanvas.Body>
 
         </Offcanvas>
