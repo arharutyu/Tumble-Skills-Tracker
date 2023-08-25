@@ -31,6 +31,7 @@ const Students = ({isAdmin}) => {
       {isAdmin && (<>
       <Col key="add"><AddCard type="Student" link="/students/new" /></Col>
       </>)}
+      {students.length > 0 && (<>
       {students.map((student, index) => (
         <Col key={index}>
           <StudentCard name={
@@ -39,6 +40,9 @@ const Students = ({isAdmin}) => {
             } />
         </Col>
       ))}
+      </>
+      )
+      }
     </Row>
     </Container>
     </>
