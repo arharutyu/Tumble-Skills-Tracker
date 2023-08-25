@@ -21,7 +21,8 @@ const GetLevel = ({setAssessSkills, assessSkills}) => {
 
   return (
     <>
-      <DropdownButton id="dropdown-basic-button" title={level ? `Level: ${level}` : "Choose a level"}>
+      <DropdownButton id="dropdown-basic-button" title={level === 0 ? 'Novice' : level ? `Level: ${level}` : "Choose a level"}>
+        <Dropdown.Item onClick={() => setLevel(0)}>Novice</Dropdown.Item>
         <Dropdown.Item onClick={() => setLevel(1)}>Level 1</Dropdown.Item>
         <Dropdown.Item onClick={() => setLevel(2)}>Level 2</Dropdown.Item>
         <Dropdown.Item onClick={() => setLevel(3)}>Level 3</Dropdown.Item>
@@ -30,11 +31,15 @@ const GetLevel = ({setAssessSkills, assessSkills}) => {
         <Dropdown.Item onClick={() => setLevel(6)}>Level 6</Dropdown.Item>
       </DropdownButton>
 
+      {assessSkills.length > 0 ? (
       <ListGroup>
       {assessSkills.map((skill, index) =>(
         <ListGroup.Item key={index}>{skill.skillName}</ListGroup.Item>
         ))}
       </ListGroup>
+       ) : (
+        <p>No skills available for this level.</p>
+      )}
     </>
   )
 }
