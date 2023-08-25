@@ -3,8 +3,9 @@ import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { del } from '../api/api'
+import { API_BASE_URL } from '../api/endpoints'
 
-const AdminMenu = ({ id, type }) => {
+const AdminMenu = ({ id, type, isAdmin }) => {
   const nav = useNavigate()
   
   const [show, setShow] = useState(false)
@@ -30,8 +31,12 @@ const AdminMenu = ({ id, type }) => {
           </Offcanvas.Header>
 
           <Offcanvas.Body>
-            <p><Link to={`/${type}/${id}/edit`}>Edit details</Link></p>
-            <p><Link to="/students" onClick={handleDelete}>Delete</Link></p>
+          {isAdmin ? (<>
+            <p><Link to={`${type}/edit/${id}`}>Edit details</Link></p>
+            <p><Link to={`${type}`} onClick={handleDelete}>Delete</Link></p>
+            </>) : (
+        <h3>You must be an admin to access this resource.</h3>
+      )}
           </Offcanvas.Body>
 
         </Offcanvas>

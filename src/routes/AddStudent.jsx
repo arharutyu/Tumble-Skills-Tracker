@@ -40,6 +40,7 @@ const AddStudent = () => {
   return (
     <>
     <Container className="contcontainer">
+    {isAdmin ? (<>
       <h1>Add New Student</h1>
       <p>Enter student details below and submit.</p>
 
@@ -69,7 +70,11 @@ const AddStudent = () => {
           Submit
         </Button>
       </Form>
+      </>) : (
+        <h3>You must be an admin to access this resource.</h3>
+      )}
     </Container>
+    
     </>
   )
 }

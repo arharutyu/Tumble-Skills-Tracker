@@ -47,9 +47,9 @@ function App() {
             
             <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
             <Route path="/students/new" element={<AddStudent isAdmin={user.isAdmin} />} />
+            <Route path="/students/edit/:id" element={<EditStudent isAdmin={user.isAdmin} />} />
             <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
-            <Route path="/students/:id/edit" element={<EditStudent isAdmin={user.isAdmin} />} />
-            
+
             <Route path="/skills" element={<Skills />} />
             
             <Route path="/new" element={<NewAssessment />} />

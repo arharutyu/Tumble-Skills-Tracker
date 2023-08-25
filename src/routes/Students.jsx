@@ -28,7 +28,9 @@ const Students = ({isAdmin}) => {
     <h1>Students</h1>
     <SearchText text="Search for a student" endpoint={STUDENTS} set={setStudents}  />
     <Row xs={1} md={4} lg={6} className="g-4">
+      {isAdmin && (<>
       <Col key="add"><AddCard type="Student" link="/students/new" /></Col>
+      </>)}
       {students.map((student, index) => (
         <Col key={index}>
           <StudentCard name={

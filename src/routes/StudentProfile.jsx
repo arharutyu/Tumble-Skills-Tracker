@@ -112,7 +112,7 @@ const StudentProfile = ({isAdmin}) => {
       )}
     </Accordion>
     </Card.Body>
-    <AdminMenu type={STUDENTS} id={studentId.id} />
+    {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} /></>)}
     </Container>
     </>
   )
