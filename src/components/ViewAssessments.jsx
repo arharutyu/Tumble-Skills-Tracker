@@ -1,35 +1,81 @@
-import React, { useEffect, useState } from 'react'
-import Container from 'react-bootstrap/Container'
-import { useParams } from 'react-router-dom'
-import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import { get } from '../api/api'
+import React, { useState } from 'react'
+import { put, del } from '../api/api'
 import { STUDENTS, ASSESSMENTS } from '../api/endpoints'
 import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
-import AdminMenu from '../components/AdminMenu'
+import Button from 'react-bootstrap/Button'
 
-const ViewAssessments = ({ assessments, isAdmin }) => {
-  
+const ViewAssessments = ({ assessments, isAdmin, accessToken }) => {
+  const [editModeIndex, setEditModeIndex] = useState(null)
+  const [editedAssessments, setEditedAssessments] = useState([])
+
+  const handleEditClick = (index) => {
+    setEditModeIndex(index)
+    setEditedAssessments([...assessments])
+  }
+
+  const handleDeleteClick = (assessmentId, index) => {
+    del(ASSESSMENTS, assessmentId, accessToken)
+  }
+
+  const handleInputChange = (event, assessmentIndex, skillIndex) => {
+    const { name, value } = event.target
+    const updatedAssessments = [...editedAssessments]
+    updatedAssessments[assessmentIndex].skills[skillIndex].score = value
+    setEditedAssessments(updatedAssessments)
+  }
+
+  const handleCancelEdit = () => {
+    setEditModeIndex(null)
+    setEditedAssessments([])
+  }
+
+  const handleSaveChanges = () => {
+    put(STUDENTS, editedAssessments, accessToken)
+    setEditModeIndex(null)
+    setEditedAssessments([])
+  }
+
   return (
-    <>
-      <Accordion defaultActiveKey="0">
-    {assessments.length > 0 ? (
-      assessments.map((assessment, index) => {
-        const skillLevels = []
+    <Accordion defaultActiveKey="0">
+      {assessments.length > 0 ? (
+        assessments.map((assessment, index) => {
+          const skillLevels = []
         assessment.skills.forEach((skill) => {
           skillLevels.push(...skill.skill.levels)
         })
       const uniqueSkillLevels = [...new Set(skillLevels)]
       console.log(uniqueSkillLevels)
 
-        return (
-        <Accordion.Item eventKey={index} key={index}>
-          <Accordion.Header>
-            {new Date(assessment.Date).toLocaleString('en-AU', { dateStyle: 'full', timeStyle: 'short' })}
-            </Accordion.Header>
-          <Accordion.Body>
-                <div>
+          const isEditMode = index === editModeIndex;
+
+          return (
+            <Accordion.Item eventKey={index} key={index}>
+              <Accordion.Header>
+                {new Date(assessment.Date).toLocaleString('en-AU', {
+                  dateStyle: 'full',
+                  timeStyle: 'short',
+                })}
+                
+              </Accordion.Header>
+              <Accordion.Body>
+              {isAdmin && !isEditMode && (
+                <>
+                  <Button
+                    variant="link"
+                    onClick={() => handleEditClick(index)}
+                  >
+                    Edit Assessment
+                  </Button>
+                  <Button
+                    variant="link"
+                    onClick={() => handleDeleteClick(assessment._id, index)}
+                  >
+                    Delete Assessment
+                  </Button>
+                  </>
+                )}
+              <div>
                 <strong>Completed by:</strong> {assessment.doneBy.name}</div>
                 <div><strong>Level: </strong>
                 {uniqueSkillLevels.map((level, levelIndex) => (
@@ -38,34 +84,60 @@ const ViewAssessments = ({ assessments, isAdmin }) => {
                     {level}
                   </span>
                 ))}</div>
-             
-            <Table striped>
-              <thead>
-              <tr>
+                
+                <Table striped>
+                  <thead>
+                  <tr>
                 <th>#</th>
                 <th>Skill</th>
                 <th>Score</th>
               </tr>
-            </thead>
-            <tbody>
-            {assessment.skills.map((skill, skillIndex) => (
-                        <tr key={skillIndex}>
-                          <td>{skillIndex + 1}</td>
-                          <td>{skill.skill.skillName}</td> 
-                          <td>{skill.score}</td> 
-                        </tr>
-                      ))}
-            </tbody>
-            </Table>
-          </Accordion.Body>
-        </Accordion.Item>        
-      )})
+                  </thead>
+                  <tbody>
+                    {assessment.skills.map((skill, skillIndex) => (
+                      <tr key={skillIndex}>
+                        <td>{skillIndex + 1}</td>
+                        <td>{skill.skill.skillName}</td>
+                        <td>
+                          {isEditMode ? (
+                            <input
+                              type="number"
+                              name="score"
+                              value={
+                                editedAssessments[index]?.skills[skillIndex]
+                                  ?.score || skill.score
+                              }
+                              onChange={(event) =>
+                                handleInputChange(event, index, skillIndex)
+                              }
+                            />
+                          ) : (
+                            skill.score
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+                {isEditMode && (
+                  <div>
+                    <Button variant="secondary" onClick={handleCancelEdit}>
+                      Cancel
+                    </Button>
+                    <Button variant="primary" onClick={handleSaveChanges}>
+                      Save Changes
+                    </Button>
+                  </div>
+                )}
+              </Accordion.Body>
+            </Accordion.Item>
+          );
+        })
       ) : (
         <p>No assessments found for this student.</p>
       )}
     </Accordion>
-    </>
-  )
-}
+  );
+};
 
-export default ViewAssessments
+export default ViewAssessments;
