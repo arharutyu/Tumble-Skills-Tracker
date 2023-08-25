@@ -8,8 +8,9 @@ import Skills from '../routes/Skills'
 import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
 import Login from '../routes/Login'
-import StudentProfile from './StudentProfile'
+import StudentProfile from '../routes/StudentProfile'
 import StartAssessment from '../routes/StartAssessment'
+import EditStudent from '../routes/EditStudent'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -44,6 +45,7 @@ function App() {
             <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} />} />
             <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
             <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
+            <Route path="/students/:id/edit" element={<EditStudent isAdmin={user.isAdmin} />} />
             <Route path="/skills" element={<Skills />} />
             <Route path="/new" element={<NewAssessment />} />
             <Route path="/new/start" element={<StartAssessment />} />

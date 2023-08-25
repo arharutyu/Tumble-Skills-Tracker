@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button'
 import Offcanvas from 'react-bootstrap/Offcanvas'
+import { Link } from 'react-router-dom'
 
-const AdminMenu = () => {
+const AdminMenu = ({ id, type }) => {
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
@@ -21,7 +22,7 @@ const AdminMenu = () => {
           </Offcanvas.Header>
 
           <Offcanvas.Body>
-            <p>Edit details</p>
+            <Link to={`/${type}/${id}/edit`}>Edit details</Link>
             <p>Delete</p>
           </Offcanvas.Body>
 
