@@ -6,19 +6,27 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
 const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }) => {
+  // State for tracking edit mode and edited assessments
   const [editModeIndex, setEditModeIndex] = useState(null)
   const [editedAssessments, setEditedAssessments] = useState([])
 
+  // Function to handle clicking on the "Edit Assessment" button
   const handleEditClick = (assessmentId, index) => {
+    // Set the edit mode index to the clicked assessment index
     setEditModeIndex(index)
+    // Copy the current assessments to be edited
     setEditedAssessments([...assessments])
   }
 
+  // Copy the current assessments to be edited
   const handleDeleteClick = (assessmentId, index) => {
+    // Call API to delete the assessment
     del(ASSESSMENTS, assessmentId, accessToken)
+    // Fetch updated assessments after deletion
     fetchAssessments()
   }
 
+  // Function to handle changes in input fields during editing
   const handleInputChange = (event, assessmentIndex, skillIndex) => {
     const { name, value } = event.target
     const updatedAssessments = [...editedAssessments]
@@ -26,15 +34,20 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
     setEditedAssessments(updatedAssessments)
   }
 
+  // Function to cancel the editing mode
   const handleCancelEdit = () => {
     setEditModeIndex(null)
     setEditedAssessments([])
   }
 
+  // Function to save changes after editing
   const handleSaveChanges = async (assessmentId, index) => {
   try {
+    // Get the updated assessment to be saved
     const updatedAssessment = editedAssessments[index]
+    // Call API to update the assessment
     await put(`${ASSESSMENTS}/${assessmentId}`, updatedAssessment, accessToken)
+    // Exit edit mode and fetch updated assessments
     setEditModeIndex(null)
     setEditedAssessments([])
     fetchAssessments()
@@ -42,6 +55,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
     console.error('Error while saving changes:', error)
   }
 }
+// Render the assessment items in an accordion
   return (
     <Accordion defaultActiveKey="0">
       {assessments.length > 0 ? (

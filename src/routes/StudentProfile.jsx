@@ -16,8 +16,10 @@ const StudentProfile = ({isAdmin, accessToken}) => {
   // Extract student ID from URL parameters
   const studentId = useParams()
 
+  // Function to fetch assessments and update state
   const fetchAssessments = async () => {
     try {
+      // Fetch all assessments relevant to student
       const assessEp = `${ASSESSMENTS}/student/${studentId.id}`;
       const assessRes = await get(assessEp, accessToken);
       setAssessments(assessRes);

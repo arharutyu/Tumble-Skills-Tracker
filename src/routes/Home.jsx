@@ -10,7 +10,6 @@ import usersIcon from '../assets/users.png'
 
 const Home = ({isAdmin, name}) => {
   // Cards to render for all user types
-  // TODO: Images
   let cards = [{
     title: "Students", 
     text:"See all current students, search for a student, and view inidividual student profiles.",
