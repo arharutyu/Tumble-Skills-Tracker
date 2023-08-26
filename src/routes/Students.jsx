@@ -15,6 +15,7 @@ const Students = ({isAdmin}) => {
   
   const addStudent = { name: 'Add Student' }
 
+  // Fetch students' data on component mount
   useEffect(() => {
     (async () => {
       const data = await get(STUDENTS)

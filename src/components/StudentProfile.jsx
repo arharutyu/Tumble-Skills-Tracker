@@ -3,25 +3,21 @@ import Container from 'react-bootstrap/Container'
 import { useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
+import { get } from '../api/api'
+import { STUDENTS } from '../api/endpoints'
 
 const StudentProfile = ({isAdmin}) => {
+  // State to store student data
   const [student, setStudent] = useState([])
+  // Extract student ID from URL parameters
   const studentId = useParams()
-
-  let accessToken = sessionStorage.getItem('accessToken')
 
   useEffect(() => {
   (async () => {
-    const res = await fetch(`http://localhost:4001/students/${studentId.id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'accessToken': `${accessToken}`,
-      }
-    }
-    )
-    const data = await res.json()
-    setStudent(data)
+    // Fetch student data from the server using the student ID
+    const endpoint = `${STUDENTS}/${studentId.id}`
+    const res = await get(endpoint)
+    setStudent(res)
     })()
   }, [])
 
