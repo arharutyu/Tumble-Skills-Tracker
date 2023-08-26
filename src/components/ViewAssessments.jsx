@@ -5,17 +5,18 @@ import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
-const ViewAssessments = ({ assessments, isAdmin, accessToken }) => {
+const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }) => {
   const [editModeIndex, setEditModeIndex] = useState(null)
   const [editedAssessments, setEditedAssessments] = useState([])
 
-  const handleEditClick = (index) => {
+  const handleEditClick = (assessmentId, index) => {
     setEditModeIndex(index)
     setEditedAssessments([...assessments])
   }
 
   const handleDeleteClick = (assessmentId, index) => {
     del(ASSESSMENTS, assessmentId, accessToken)
+    fetchAssessments()
   }
 
   const handleInputChange = (event, assessmentIndex, skillIndex) => {
@@ -30,12 +31,17 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken }) => {
     setEditedAssessments([])
   }
 
-  const handleSaveChanges = () => {
-    put(STUDENTS, editedAssessments, accessToken)
+  const handleSaveChanges = async (assessmentId, index) => {
+  try {
+    const updatedAssessment = editedAssessments[index]
+    await put(`${ASSESSMENTS}/${assessmentId}`, updatedAssessment, accessToken)
     setEditModeIndex(null)
     setEditedAssessments([])
+    fetchAssessments()
+  } catch (error) {
+    console.error('Error while saving changes:', error)
   }
-
+}
   return (
     <Accordion defaultActiveKey="0">
       {assessments.length > 0 ? (
@@ -63,7 +69,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken }) => {
                 <>
                   <Button
                     variant="link"
-                    onClick={() => handleEditClick(index)}
+                    onClick={() => handleEditClick(assessment._id, index)}
                   >
                     Edit Assessment
                   </Button>
@@ -124,7 +130,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken }) => {
                     <Button variant="secondary" onClick={handleCancelEdit}>
                       Cancel
                     </Button>
-                    <Button variant="primary" onClick={handleSaveChanges}>
+                    <Button variant="primary" onClick={() => handleSaveChanges(assessment._id, index)}>
                       Save Changes
                     </Button>
                   </div>
