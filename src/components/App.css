@@ -6,6 +6,15 @@
   vertical-align: top;
 }
 
+#admin {
+  position: fixed;
+  top: 5rem;
+  right: 10%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .card {
   min-width: fit-content;
   padding: auto;

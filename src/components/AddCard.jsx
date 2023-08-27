@@ -1,15 +1,16 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
 
-const AddCard = ({ type }) => {
-  // TODO: Add Link around Title text to go to path specified by passed in link prop
-  // TODO: Add link prop
+const AddCard = ({ type, link }) => {
   
   return (
     <>
     <Card>
       <Card.Body>
-        <Card.Title>Add {type}</Card.Title>
+        <Card.Title>
+        <Link to={link}>
+        Add {type} </Link></Card.Title>
       </Card.Body>
     </Card>
     </>

@@ -8,8 +8,10 @@ import Skills from '../routes/Skills'
 import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
 import Login from '../routes/Login'
-import StudentProfile from './StudentProfile'
+import StudentProfile from '../routes/StudentProfile'
 import StartAssessment from '../routes/StartAssessment'
+import EditStudent from '../routes/EditStudent'
+import AddStudent from '../routes/AddStudent'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -42,12 +44,19 @@ function App() {
           
           <Routes>
             <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} />} />
+            
             <Route path="/students" element={<Students isAdmin={user.isAdmin} />} />
+            <Route path="/students/new" element={<AddStudent isAdmin={user.isAdmin} />} />
+            <Route path="/students/edit/:id" element={<EditStudent isAdmin={user.isAdmin} />} />
             <Route path="/students/:id" element={<StudentProfile isAdmin={user.isAdmin} />} />
+
             <Route path="/skills" element={<Skills />} />
+            
             <Route path="/new" element={<NewAssessment />} />
             <Route path="/new/start" element={<StartAssessment />} />
+            
             <Route path="/users" element={<Users />} />
+            
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>
           

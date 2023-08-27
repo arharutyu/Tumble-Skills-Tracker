@@ -68,4 +68,41 @@ async function post(endpoint, body) {
   }
 }
 
-export { get, search, skills, post }
+// PUT request
+async function put(endpoint, body) {
+  try {
+    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    })
+
+    if (!res.ok) {
+      throw new Error(`Request failed with status: ${res.status}`)
+    }
+
+    return res
+  } catch (error) {
+    console.error('Error while making PUT request:', error)
+    throw error
+  }
+}
+
+// DELETE request
+async function del(endpoint, id) {
+  const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `${accessToken}`,
+        }
+      }
+      )
+      const data = await res.json()
+      return data
+}
+
+export { get, search, skills, post, put, del }
