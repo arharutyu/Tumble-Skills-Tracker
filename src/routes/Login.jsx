@@ -14,7 +14,7 @@ const Login = ({ setIsLoggedIn, setUser, setAccessToken }) => {
 
   async function submit(event) {
     event.preventDefault()
-    const authEndpoint = 'http://localhost:4001/login';
+    const authEndpoint = 'https://tumble-skills-tracker-api.onrender.com/login';
 
     // Create a request payload
     const credentials = {

@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:4001'
+const API_BASE_URL = 'https://tumble-skills-tracker-api.onrender.com'
 
 const STUDENTS = '/students'
 const USERS = '/users'
