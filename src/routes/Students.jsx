@@ -26,10 +26,10 @@ const Students = ({isAdmin, accessToken}) => {
   return ( <>
   <Container className="contcontainer">
     <h1>Students</h1>
-    <SearchText text="Search for a student" endpoint={STUDENTS} set={setStudents}  />
+    <SearchText text="Search for a student" endpoint={STUDENTS} set={setStudents} accessToken={accessToken}  />
     <Row xs={1} md={4} lg={6} className="g-4">
       {isAdmin && (<>
-      <Col key="add"><AddCard type="Student" link="/students/new" /></Col>
+      <Col key="add"><AddCard type="Student" link="/students/new" accessToken={accessToken} /></Col>
       </>)}
       {students.length > 0 && (<>
       {students.map((student, index) => (

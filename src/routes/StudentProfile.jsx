@@ -27,7 +27,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     const assessRes = await get(assessEp, accessToken)
     setAssessments(assessRes)
     })()
-  }, [])
+  }, [assessments])
 
   console.log(assessments)
   
@@ -59,7 +59,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     </Card.Body>
 
     <Card.Body>
-        <ViewAssessments assessments={assessments} isAdmin={isAdmin} />
+        <ViewAssessments assessments={assessments} isAdmin={isAdmin} accessToken={accessToken} />
     </Card.Body>
     {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} accessToken={accessToken} /></>)}
     </Container>
