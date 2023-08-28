@@ -19,6 +19,18 @@
   min-width: 75vw
 }
 
+.left-aligned-list {
+  text-align-last: left;
+  padding: 0;
+  margin: 0;
+}
+
+.left-aligned-list li {
+  margin-left: 1em;
+  vertical-align: top;
+  
+}
+
 /* 
 .logo {
   height: 6em;
