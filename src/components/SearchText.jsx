@@ -5,15 +5,16 @@ import './SearchText.css'
 import React, { useState } from 'react'
 import { search } from '../api/api'
 
-const SearchText = ({ text, endpoint, set }) => {
+const SearchText = ({ text, endpoint, set, accessToken }) => {
   // State to store the value entered in the search input
   const [searchValue, setSearchValue] = useState('')
 
   // Function to handle form submission when search button is clicked
   async function submit(event) {
     event.preventDefault()
+    console.log(accessToken)
     // Fetch data from the server using the search API and update state
-    const data = await search(endpoint, searchValue)
+    const data = await search(endpoint, searchValue, accessToken)
     set(data)
   }
 

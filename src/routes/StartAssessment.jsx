@@ -5,7 +5,7 @@ import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import SubmitAsssessment from '../components/SubmitAsssessment'
 
-const StartAssessment = () => {
+const StartAssessment = ({accessToken}) => {
   const [student, setStudent] = useState([])
   const [assessSkills, setAssessSkills] = useState([])
   const [assessed, setAssessed] = useState([])
@@ -67,7 +67,7 @@ const StartAssessment = () => {
           ))}
         </tbody>
         </Table>
-        <SubmitAsssessment assessed={assessed} student={student._id} />
+        <SubmitAsssessment assessed={assessed} student={student._id} accessToken={accessToken} />
       </Container>
     </>
   )

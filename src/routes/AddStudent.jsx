@@ -9,7 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 
 
-const AddStudent = () => {
+const AddStudent = ({accessToken, isAdmin} ) => {
   const nav = useNavigate()
 
   const [name, setName] = useState('')
@@ -26,7 +26,7 @@ const AddStudent = () => {
     }
 
     try {
-      const res = await post(STUDENTS, newStudent)
+      const res = await post(STUDENTS, newStudent, accessToken)
       const data = await res.json()
       const newStudentId = data._id
       

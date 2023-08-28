@@ -4,7 +4,7 @@ import { post } from '../api/api'
 import { ASSESSMENTS } from '../api/endpoints'
 import { useNavigate } from 'react-router-dom'
 
-const SubmitAsssessment = ({ assessed, student }) => {
+const SubmitAsssessment = ({ assessed, student, accessToken }) => {
   // Initialize the navigation function from React Router
   const nav = useNavigate()
   
@@ -24,7 +24,7 @@ const SubmitAsssessment = ({ assessed, student }) => {
 
     try {
       // Make a POST request to create the assessment on the server
-      const response = await post(ASSESSMENTS, assessment)
+      const response = await post(ASSESSMENTS, assessment, accessToken)
       // Parse the JSON response returned by the API
       const createdAssessment = await response.json()
 
