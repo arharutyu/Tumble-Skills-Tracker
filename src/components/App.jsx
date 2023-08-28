@@ -20,23 +20,19 @@ function App() {
   console.log(user)
   console.log(accessToken)
   useEffect(() => {
-    // Check if accessToken is stored in sessionStorage
-    // const storedAccessToken = sessionStorage.getItem('accessToken') || ''
-    // setAccessToken(storedAccessToken)
-    const storedAccessToken = sessionStorage.getItem('accessToken');
-    const storedUser = JSON.parse(sessionStorage.getItem('user'));
+    const storedAccessToken = sessionStorage.getItem('accessToken')
+    const storedUser = JSON.parse(sessionStorage.getItem('user'))
 
     if (storedAccessToken && storedUser) {
       setAccessToken(storedAccessToken);
       setUser(storedUser);
       setIsLoggedIn(true);
     }
-    // const checkLogin = accessToken !== ''
-    // if (checkLogin) {
-    // setIsLoggedIn(true)
+
     // Automatically delete accessToken after 6 hours (21600000 milliseconds)
     setTimeout(() => {
       sessionStorage.removeItem('accessToken')
+      sessionStorage.removeItem('user')
       setIsLoggedIn(false)
     }, 21600000)
   
@@ -50,7 +46,7 @@ function App() {
           <NavBar isAdmin={user.isAdmin} />
           
           <Routes>
-            <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} accessToken={accessToken} />} />
+            <Route path="/" element={<Home isAdmin={user.isAdmin} name={user.name} accessToken={accessToken} setIsLoggedIn={setIsLoggedIn} />} />
             
             <Route path="/students" element={<Students isAdmin={user.isAdmin} accessToken={accessToken} />} />
             <Route path="/students/new" element={<AddStudent isAdmin={user.isAdmin} accessToken={accessToken} />} />

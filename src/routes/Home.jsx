@@ -1,14 +1,15 @@
 import React from 'react'
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import ContentCard from '../components/ContentCard';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import ContentCard from '../components/ContentCard'
 import Container from 'react-bootstrap/Container'
 import studentsIcon from '../assets/students.png'
 import skillsIcon from '../assets/skills.png'
 import assessmentIcon from '../assets/assessment.png'
 import usersIcon from '../assets/users.png'
+import LogoutButton from '../components/LogoutButton'
 
-const Home = ({isAdmin, name}) => {
+const Home = ({isAdmin, name, setIsLoggedIn }) => {
   // Cards to render for all user types
   let cards = [{
     title: "Students", 
@@ -52,6 +53,7 @@ const Home = ({isAdmin, name}) => {
   <Container className="contcontainer">
     <h1>Home</h1>
     <h3>Welcome {name}!</h3>
+    <LogoutButton setIsLoggedIn={setIsLoggedIn} />
     <Row xs={1} md={2} lg={lgBp} className="g-4">
       {cards.map((card, index) => (
         <Col key={index}>
