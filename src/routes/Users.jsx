@@ -14,7 +14,15 @@ const Users = ({isAdmin, accessToken}) => {
   console.log(accessToken)
   const addUser = { name: 'Add new User'}
 
-  
+  // Fetch users' data on component mount
+  useEffect(() => {
+    (async () => {
+      const data = await get(USERS, accessToken)
+      setUser(data)
+    })()
+  }, [])
+
+
 
 
 
