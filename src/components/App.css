@@ -21,8 +21,9 @@
   margin: auto;
 }
 
+/*INNER PAGE BACKGROUND COLOUR*/
 .contcontainer {
-  background-color: #FFFFFF !important;
+  background-color: #ffffff !important; 
   padding: 2em;
   min-height: 100vh;
   min-width: 75vw
