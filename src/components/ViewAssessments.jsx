@@ -6,6 +6,21 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 
 const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }) => {
+
+
+  const hasInvalidScores = () => {
+    for (const editedAssessment of editedAssessments) {
+      for (const skill of editedAssessment.skills) {
+        const score = skill.score;
+        if (score < 0 || score > 4) {
+          return true; // Found an invalid score
+        }
+      }
+    }
+    return false; // No invalid scores found
+  };
+
+
   // State for tracking edit mode and edited assessments
   const [editModeIndex, setEditModeIndex] = useState(null)
   const [editedAssessments, setEditedAssessments] = useState([])
@@ -37,6 +52,9 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
   // Function to handle changes in input fields during editing
   const handleInputChange = (event, assessmentIndex, skillIndex) => {
     const { name, value } = event.target
+
+    const validValue = Math.min(4, Math.max(0, parseInt(value)));
+
     const updatedAssessments = [...editedAssessments]
     updatedAssessments[assessmentIndex].skills[skillIndex].score = value
     setEditedAssessments(updatedAssessments)
@@ -128,6 +146,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
                         <td>{skill.skill.skillName}</td>
                         <td>
                           {isEditMode ? (
+                            <div>
                             <input
                               type="number"
                               name="score"
@@ -139,6 +158,11 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
                                 handleInputChange(event, index, skillIndex)
                               }
                             />
+                            {editedAssessments[index]?.skills[skillIndex]?.score < 0 ||
+                              editedAssessments[index]?.skills[skillIndex]?.score > 4 ? (
+                                <p className="text-danger">Please enter a valid score (0-4).</p>
+                              ) : null}
+                              </div>
                           ) : (
                             skill.score
                           )}
@@ -152,7 +176,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
                     <Button variant="secondary" onClick={handleCancelEdit}>
                       Cancel
                     </Button>
-                    <Button variant="primary" onClick={() => handleSaveChanges(assessment._id, index)}>
+                    <Button variant="primary" onClick={() => handleSaveChanges(assessment._id, index)} disabled={hasInvalidScores()}>
                       Save Changes
                     </Button>
                   </div>

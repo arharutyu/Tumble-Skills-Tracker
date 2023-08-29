@@ -4,7 +4,7 @@ import { post } from '../api/api'
 import { ASSESSMENTS } from '../api/endpoints'
 import { useNavigate } from 'react-router-dom'
 
-const SubmitAsssessment = ({ assessed, student, accessToken }) => {
+const SubmitAsssessment = ({ assessed, student, accessToken, validationError }) => {
   // Initialize the navigation function from React Router
   const nav = useNavigate()
   
@@ -40,7 +40,7 @@ const SubmitAsssessment = ({ assessed, student, accessToken }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={submit}>Submit Assessment</Button>
+      <Button variant="primary" onClick={submit} disabled={validationError}>Submit Assessment</Button>
     </>
   )
 }

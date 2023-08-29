@@ -9,6 +9,7 @@ const StartAssessment = ({accessToken}) => {
   const [student, setStudent] = useState([])
   const [assessSkills, setAssessSkills] = useState([])
   const [assessed, setAssessed] = useState([])
+  const [validationError, setValidationError] = useState(false)
 
   console.log(student._id)
   console.log(assessed)
@@ -20,13 +21,24 @@ const StartAssessment = ({accessToken}) => {
     setAssessSkills(JSON.parse(localStorage.getItem('assessment')) || [])
   }, [])
 
+
+  
+
   // Handle radio button changes
   const handleRadioChange = (_id, score) => {
     // Filter out the current skill from assessed data and add the new score
     const updatedAssessed = assessed.filter((item) => item.skill !== _id);
     updatedAssessed.push({ skill: _id, score });
     setAssessed(updatedAssessed);
+
+    const isAllSkillsAssessed = assessSkills.every(skill =>
+      updatedAssessed.some(item => item.skill === skill._id)
+    )
+    setValidationError(!isAllSkillsAssessed)
   }
+
+  
+
 
   return (
     <>
@@ -67,7 +79,11 @@ const StartAssessment = ({accessToken}) => {
           ))}
         </tbody>
         </Table>
-        <SubmitAsssessment assessed={assessed} student={student._id} accessToken={accessToken} />
+        {validationError && (
+        <p className="text-danger">Please select a score for each skill.</p>
+      )}
+        <SubmitAsssessment assessed={assessed} student={student._id} accessToken={accessToken} validationError={validationError} />
+        
       </Container>
     </>
   )
