@@ -26,7 +26,7 @@ const GetStudent = ({setStudent, accessToken }) => {
         <SearchText text="Search for a student" endpoint={STUDENTS} set={setSearchStudents} accessToken={accessToken}  />
         <ListGroup>
         {searchStudents.map((student, index) => (
-          <ListGroup.Item key={index} onClick={() => handleStudentClick(student._id)}>{student.name}</ListGroup.Item>
+          <ListGroup.Item key={index} onClick={() => handleStudentClick(student._id)}style={{ cursor: 'pointer' }}>{student.name}</ListGroup.Item>
         ))
         }
         </ListGroup> 
