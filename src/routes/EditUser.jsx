@@ -76,7 +76,9 @@ const EditUser = ({isAdmin, accessToken}) => {
           <Form.Control id="username" type="text" placeholder={user.username} onChange={handleUserChange} />
           <Form.Label>Password:</Form.Label>
           <Form.Control id="password" type="text" placeholder={user.password} onChange={handlePassChange} />
-          <Form.Control id="admin" type="text" placeholder={user.isAdmin} onChange={handleAdminChange} />
+          
+          
+          
           <Button variant="primary" type="submit">Submit</Button></Form>
           </>) : (
             <h3>You must be an admin to access this resource.</h3>

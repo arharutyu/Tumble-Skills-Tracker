@@ -10,6 +10,7 @@ import AdminMenu from '../components/AdminMenu'
 const UserProfile = ({isAdmin, accessToken}) => {
     // State to store user data
     const [user, setUser] = useState([])
+    
 
     // Extract user ID from URL parameters
     const userId = useParams()
@@ -20,6 +21,7 @@ const UserProfile = ({isAdmin, accessToken}) => {
         const endpoint = `${USERS}/${userId.id}`
         const res = await get(endpoint, accessToken)
         setUser(res)
+        console.log(user)
         })()
     }, [])
 
@@ -45,7 +47,7 @@ const UserProfile = ({isAdmin, accessToken}) => {
                 </ListGroup>
                 <ListGroup horizontal>
                   <ListGroup.Item>Admin:</ListGroup.Item>
-                  <ListGroup.Item>{user.isAdmin}</ListGroup.Item>
+                  <ListGroup.Item>{`${user.isAdmin}`}</ListGroup.Item>
                 </ListGroup>
               </ListGroup>
             </Card.Body>

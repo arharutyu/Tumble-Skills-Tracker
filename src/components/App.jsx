@@ -65,7 +65,7 @@ function App() {
             <Route path="/new" element={<NewAssessment accessToken={accessToken} />} />
             <Route path="/new/start" element={<StartAssessment accessToken={accessToken} />} />
             
-            <Route path="/users" element={<Users accessToken={accessToken} />} />
+            <Route path="/users" element={<Users isAdmin={user.isAdmin} accessToken={accessToken} />} />
             <Route path="/users/:id" element={<UserProfle isAdmin={user.isAdmin} accessToken={accessToken} />} />
             <Route path="/users/new" element={<AddUser isAdmin={user.isAdmin} accessToken={accessToken} />} />
             <Route path="/users/edit/:id" element={<EditUser isAdmin={user.isAdmin} accessToken={accessToken} />} />

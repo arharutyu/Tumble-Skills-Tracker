@@ -20,13 +20,14 @@ const Users = ({isAdmin, accessToken}) => {
     (async () => {
       const data = await get(USERS, accessToken)
       setUser(data)
+      console.log(isAdmin)
     })()
   }, [])
   
   return (<>
   <Container className="contcontainer">
     <h1>Users</h1>
-    <SearchText text="Search for a user" endpoint={USERS} set={setUser}  />
+    <SearchText text="Search for a user" endpoint={USERS} accessToken={accessToken} set={setUser}  />
     <Row xs={1} md={4} lg={6} className="g-4">
       {isAdmin && (<>
       <Col key="add"><AddCard type="User" link="/users/new" /></Col>
