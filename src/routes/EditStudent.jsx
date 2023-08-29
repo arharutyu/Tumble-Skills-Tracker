@@ -7,6 +7,8 @@ import Container from 'react-bootstrap/Container'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Button from 'react-bootstrap/Button'
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import ListGroup from 'react-bootstrap/ListGroup'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const EditStudent = ({isAdmin, accessToken}) => {
   const [student, setStudent] = useState([])
@@ -83,13 +85,23 @@ const EditStudent = ({isAdmin, accessToken}) => {
         placeholder={student._id}
         readOnly
       />
+
+      <InputGroup className="mb-3">
+      <InputGroup.Text>Name:</InputGroup.Text>
       <Form.Control id="name" type="text" placeholder={student.name} onChange={handleNameChange} />
+      </InputGroup>
+      
+      <InputGroup className="mb-3">
+      <InputGroup.Text>DOB:</InputGroup.Text>
       <Form.Control 
       type="date" 
       id="DOB"
       value={formattedDOB || ''}
       onChange={handleDOBChange}
       />
+      </InputGroup>
+
+      <InputGroup className="mb-3">
       <Form.Group className="mb-3" controlId="skillLevel">
           <Form.Label>Skill level:</Form.Label>
           <DropdownButton id="levels" title={level === 0 ? 'Novice' : level ? `Level ${level}` : `Level ${student.skillLevel}`}>
@@ -102,6 +114,7 @@ const EditStudent = ({isAdmin, accessToken}) => {
             <Dropdown.Item onClick={() => setLevel(6)}>Level 6</Dropdown.Item>
           </DropdownButton>
         </Form.Group>
+        </InputGroup>
       <Button variant="primary" type="submit">Submit</Button></Form>
       </>) : (
         <h3>You must be an admin to access this resource.</h3>
