@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import NavBar from './NavBar'
+import Footer from './Footer'
 import './App.css'
 import Home from '../routes/Home'
 import Students from '../routes/Students'
@@ -68,6 +69,8 @@ function App() {
 
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>
+
+          <Footer></Footer>
           
         </>
       )}
