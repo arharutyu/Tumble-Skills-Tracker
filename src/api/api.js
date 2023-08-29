@@ -2,44 +2,59 @@ import { API_BASE_URL } from './endpoints.js'
 
 // GET request
 async function get(endpoint, accessToken) {
-  const res = await fetch(`${API_BASE_URL}${endpoint}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${accessToken}`,
+  try {  
+    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`,
+          }
         }
+        )
+        const data = await res.json()
+        return data
+  } catch (error) {
+        console.error('Error while making GET request:', error)
+        throw error
       }
-      )
-      const data = await res.json()
-      return data
 }
 
 // GET request with query parameters
 async function search(endpoint, search, accessToken) {
-  const res = await fetch(`${API_BASE_URL}${endpoint}/results?search=${search}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${accessToken}`,
+  try {
+    const res = await fetch(`${API_BASE_URL}${endpoint}/results?search=${search}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`,
+          }
         }
-      }
-      )
-      const data = await res.json()
-      return data
+        )
+        const data = await res.json()
+        return data
+    } catch (error) {
+      console.error('Error while making GET request with query params:', error)
+      throw error
+    }
 }
 
 // GET skills from level
 async function skills(level, accessToken) {
-  const res = await fetch(`${API_BASE_URL}/skills/level/${level}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${accessToken}`,
+  try {
+    const res = await fetch(`${API_BASE_URL}/skills/level/${level}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`,
+          }
         }
-      }
-      )
-      const data = await res.json()
-      return data
+        )
+        const data = await res.json()
+        return data
+    } catch (error) {
+      console.error('Error while making GET request from level:', error)
+      throw error
+    }
 }
 
 // POST request
@@ -53,11 +68,6 @@ async function post(endpoint, body, accessToken) {
       },
       body: JSON.stringify(body),
     })
-
-    if (!res.ok) {
-      throw new Error(`Request failed with status: ${res.status}`)
-    }
-
     return res
   } catch (error) {
     console.error('Error while making POST request:', error)
@@ -77,9 +87,9 @@ async function put(endpoint, body, accessToken) {
       body: JSON.stringify(body),
     })
 
-    if (!res.ok) {
-      throw new Error(`Request failed with status: ${res.status}`)
-    }
+    // if (!res.ok) {
+    //   throw new Error(`Request failed with status: ${res.status}`)
+    // }
 
     return res
   } catch (error) {
@@ -90,16 +100,21 @@ async function put(endpoint, body, accessToken) {
 
 // DELETE request
 async function del(endpoint, id, accessToken) {
-  const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${accessToken}`,
+  try {
+    const res = await fetch(`${API_BASE_URL}${endpoint}/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${accessToken}`,
+          }
         }
-      }
-      )
-      const data = await res.json()
-      return data
+        )
+        const data = await res.json()
+        return data
+    } catch (error) {
+      console.error('Error while making GET request:', error)
+      throw error
+    }
 }
 
 export { get, search, skills, post, put, del }
