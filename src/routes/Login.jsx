@@ -57,6 +57,7 @@ const Login = ({ setIsLoggedIn, setUser, setAccessToken }) => {
   
 
   return (<>
+  <Container fluid id="login-bg">
     <Container fluid="md" id='login'>
           <img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="250"></img>
         <h1>Tumble Skills Tracker Login</h1>
@@ -74,6 +75,7 @@ const Login = ({ setIsLoggedIn, setUser, setAccessToken }) => {
           Submit
         </Button>
       </Form>
+    </Container>
     </Container>
     </>
     )
