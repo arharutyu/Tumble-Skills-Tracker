@@ -42,7 +42,7 @@ const EditUser = ({isAdmin, accessToken}) => {
 
         // Handle change for Password input
         const handleAdminChange = (event) => {
-            setUpdate({ ...update, isAdmin: event.target.value})
+            setUpdate({ ...update, isAdmin: event.target.checked})
         }
     
          // Handle form submission
@@ -76,7 +76,10 @@ const EditUser = ({isAdmin, accessToken}) => {
           <Form.Control id="username" type="text" placeholder={user.username} onChange={handleUserChange} />
           <Form.Label>Password:</Form.Label>
           <Form.Control id="password" type="text" placeholder={user.password} onChange={handlePassChange} />
-          
+          <Form.Group className="mb-3" controlId="isAdmin">
+              <Form.Label>Admin:</Form.Label>
+              <input type="checkbox" placeholder="Admin" value={user.isAdmin} onChange={handleAdminChange} />
+            </Form.Group>
           
           
           <Button variant="primary" type="submit">Submit</Button></Form>

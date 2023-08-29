@@ -14,7 +14,7 @@ const AddUser = ({accessToken, isAdmin}) => {
     const [name, setName] = useState('')
     const [username, setUser] = useState('')
     const [password, setPassword] = useState('')
-    const [admin, setAdmin] = useState('')
+    const [admin, setAdmin] = useState(false)
 
     async function submit(event) {
         event.preventDefault()
@@ -60,7 +60,7 @@ const AddUser = ({accessToken, isAdmin}) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="isAdmin">
               <Form.Label>Admin:</Form.Label>
-              <Form.Control type="input" placeholder="Admin" value={admin} onChange={e => setAdmin(e.target.value)} />
+              <input type="checkbox" placeholder="Admin" value={admin} onChange={e => setAdmin(e.target.checked)} />
             </Form.Group>
 
             <Button variant="primary" type="submit">
