@@ -43,7 +43,6 @@ const EditUser = ({isAdmin, accessToken}) => {
         // Handle change for Password input
         const handleAdminChange = (event) => {
             setUpdate({ ...update, isAdmin: event.target.checked})
-            console.log(event.target.checked)
         }
     
          // Handle form submission

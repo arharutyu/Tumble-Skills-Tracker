@@ -18,7 +18,7 @@ const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
 
   // Handle the delete action
   const handleDelete = async () => {
-    const confirmed = window.confirm("Are you sure you want to delete this student?")
+    const confirmed = window.confirm("Are you sure you want to delete this record?")
     if (confirmed) {
     await del(type, id, accessToken).then(data => console.log(data))
     console.log('Deleted')
