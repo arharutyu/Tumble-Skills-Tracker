@@ -16,6 +16,18 @@ const StudentProfile = ({isAdmin, accessToken}) => {
   // Extract student ID from URL parameters
   const studentId = useParams()
 
+  // Function to fetch assessments and update state
+  const fetchAssessments = async () => {
+    try {
+      // Fetch all assessments relevant to student
+      const assessEp = `${ASSESSMENTS}/student/${studentId.id}`;
+      const assessRes = await get(assessEp, accessToken);
+      setAssessments(assessRes);
+    } catch (error) {
+      console.error('Error fetching assessments:', error);
+    }
+  }
+
   useEffect(() => {
   (async () => {
     // Fetch student data from the server using the student ID
@@ -23,8 +35,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     const res = await get(endpoint, accessToken)
     setStudent(res)
     // Fetch all assessments relevant to student
-    const assessEp = `${ASSESSMENTS}/student/${studentId.id}`
-    const assessRes = await get(assessEp, accessToken)
+    const assessRes = fetchAssessments()
     setAssessments(assessRes)
     })()
   }, [])
@@ -59,7 +70,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     </Card.Body>
 
     <Card.Body>
-        <ViewAssessments assessments={assessments} isAdmin={isAdmin} />
+        <ViewAssessments assessments={assessments} isAdmin={isAdmin} accessToken={accessToken} fetchAssessments={fetchAssessments} />
     </Card.Body>
     {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} accessToken={accessToken} /></>)}
     </Container>

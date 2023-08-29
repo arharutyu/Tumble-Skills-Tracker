@@ -8,11 +8,12 @@ import StudentCard from '../components/StudentCard'
 import StartButton from '../components/StartButton'
 
 const NewAssessment = ({ accessToken }) => {
+  // State to store selected student and assessment skills
   const [student, setStudent] = useState([])
   const [name, setName] = useState('')
   const [assessSkills, setAssessSkills] = useState([])
-  console.log(student)
-  console.log(assessSkills)
+
+  // Fetch student data and update state when a student is selected
   useEffect(() => {
     if (student.length > 0) {
         (async () => {

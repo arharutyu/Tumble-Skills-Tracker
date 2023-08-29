@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 
 const AddStudent = ({accessToken, isAdmin} ) => {
@@ -15,27 +16,61 @@ const AddStudent = ({accessToken, isAdmin} ) => {
   const [name, setName] = useState('')
   const [dob, setDob] = useState('')
   const [level, setLevel] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  async function submitNewStudent() {
+    try {
+      setMessage('')
+
+      const newStudent = {
+        name: name,
+        DOB: dob,
+        skillLevel: level,
+      }
+
+      const res = await post(STUDENTS, newStudent, accessToken)
+      
+      if (!res.ok) {
+        const errorData = await res.json()
+
+        if (errorData.error) {
+          const errorMessages = errorData.error.split('Student validation failed: ')
+          const fieldErrors = {}
+          let generalError = ''
+          let errors = []
+          console.log(errorMessages)
+
+          for (const errorMessage of errorMessages) {
+            const splitErrors = errorMessage.split(', ')
+            errors.push(splitErrors)
+          }
+          setMessage(errors[1])
+          }
+        }
+       else {
+        const data = await res.json()
+        const newStudentId = data._id
+        nav(`/students/${newStudentId}`)
+      } 
+    } catch (err) {
+        console.error(err)
+      }
+    }
+
+    useEffect(() => {
+      if (isLoading) {
+        submitNewStudent().then(() => {
+          setIsLoading(false)
+        })
+      }
+    }, [isLoading])
 
   async function submit(event) {
     event.preventDefault()
-
-    const newStudent = {
-      name: name,
-      DOB: dob,
-      skillLevel: level,
-    }
-
-    try {
-      const res = await post(STUDENTS, newStudent, accessToken)
-      const data = await res.json()
-      const newStudentId = data._id
-      
-      nav(`/students/${newStudentId}`)
-    } catch (err) {
-      console.error(err)
-    }
+    setIsLoading(true)
   } 
-
+  console.log(message)
 
   return (
     <>
@@ -66,8 +101,13 @@ const AddStudent = ({accessToken, isAdmin} ) => {
             <Dropdown.Item onClick={() => setLevel(6)}>Level 6</Dropdown.Item>
           </DropdownButton>
         </Form.Group>
+        <ListGroup>
+          {message ? (
+            message.map((mes, index) => <ListGroup.Item variant="warning" key={index}>{mes}</ListGroup.Item>)
+          ) : null}
+        </ ListGroup>
         <Button variant="primary" type="submit">
-          Submit
+          {isLoading? '...' : 'Submit'}
         </Button>
       </Form>
       </>) : (

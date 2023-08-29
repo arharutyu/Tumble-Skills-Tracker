@@ -9,16 +9,22 @@ import adminCog from '../assets/settings.png'
 const AdminMenu = ({ id, type, isAdmin, accessToken }) => {
   const nav = useNavigate()
   
+  // State to control the visibility of the Offcanvas
   const [show, setShow] = useState(false)
 
+  // Close/open the Offcanvas
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  // Handle the delete action
   const handleDelete = async () => {
+    const confirmed = window.confirm("Are you sure you want to delete this student?")
+    if (confirmed) {
     await del(type, id, accessToken).then(data => console.log(data))
     console.log('Deleted')
-    nav('/students')
-  }
+    // Navigate back to all students/users page
+    nav(type)
+  }}
 
   return (
     <>
