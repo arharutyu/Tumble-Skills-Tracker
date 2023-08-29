@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
 import { useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup'
 import { get } from '../api/api'
 import { USERS } from '../api/endpoints'
 import AdminMenu from '../components/AdminMenu'
@@ -48,7 +49,7 @@ const UserProfile = ({isAdmin, accessToken}) => {
                 </ListGroup>
               </ListGroup>
             </Card.Body>
-            {isAdmin && (<><AdminMenu type={STUDENTS} id={studentId.id} accessToken={accessToken} /></>)}
+            {isAdmin && (<><AdminMenu type={USERS} id={userId.id} accessToken={accessToken} /></>)}
         </Container>
         </>
       )
