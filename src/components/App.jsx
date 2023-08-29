@@ -7,6 +7,9 @@ import Students from '../routes/Students'
 import Skills from '../routes/Skills'
 import NewAssessment from '../routes/NewAssessment'
 import Users from '../routes/Users'
+import UserProfle from '../routes/UserProfile'
+import AddUser from '../routes/AddUser'
+import EditUser from '../routes/EditUser'
 import Login from '../routes/Login'
 import StudentProfile from '../routes/StudentProfile'
 import StartAssessment from '../routes/StartAssessment'
@@ -58,8 +61,11 @@ function App() {
             <Route path="/new" element={<NewAssessment accessToken={accessToken} />} />
             <Route path="/new/start" element={<StartAssessment accessToken={accessToken} />} />
             
-            <Route path="/users" element={<Users accessToken={accessToken} />} />
-            
+            <Route path="/users" element={<Users isAdmin={user.isAdmin} accessToken={accessToken} />} />
+            <Route path="/users/:id" element={<UserProfle isAdmin={user.isAdmin} accessToken={accessToken} />} />
+            <Route path="/users/new" element={<AddUser isAdmin={user.isAdmin} accessToken={accessToken} />} />
+            <Route path="/users/edit/:id" element={<EditUser isAdmin={user.isAdmin} accessToken={accessToken} />} />
+
             <Route path="*" element={<h3>Page not found</h3>} />
           </Routes>
           
