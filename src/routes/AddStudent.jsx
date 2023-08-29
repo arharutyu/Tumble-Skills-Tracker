@@ -36,8 +36,6 @@ const AddStudent = ({accessToken, isAdmin} ) => {
 
         if (errorData.error) {
           const errorMessages = errorData.error.split('Student validation failed: ')
-          const fieldErrors = {}
-          let generalError = ''
           let errors = []
           console.log(errorMessages)
 
