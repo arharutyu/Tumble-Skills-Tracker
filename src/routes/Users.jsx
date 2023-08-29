@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import UserCard from '../components/UserCard'
 import SearchText from '../components/SearchText'
 import Row from 'react-bootstrap/Row'
@@ -6,17 +6,20 @@ import Col from 'react-bootstrap/Col'
 import StudentCard from '../components/StudentCard'
 import '../components/App.css'
 import Container from 'react-bootstrap/Container'
+import { get } from '../api/api.js'
+import { USERS } from '../api/endpoints'
+
+const Users = ({isAdmin, accessToken}) => {
+  const [users, setUser] = useState([])
+  console.log(accessToken)
+  const addUser = { name: 'Add new User'}
+
+  
 
 
-const Users = () => {
-  let users = [
-    { name: 'John', username: 'John1', id: 1, is_admin: true, role: 'Coach' },
-    { name: 'John', username: 'John1', id: 1, is_admin: true, role: 'Assistant' },
-    { name: 'John', username: 'John1', id: 1, is_admin: true, role: 'Owner' },
-    { name: 'John', username: 'John1', id: 1, is_admin: true, role: 'Coach' }
-  ]
 
-  const addUser = { name: 'Add new user' }
+
+  
   
   return (<>
   <Container className="contcontainer">
