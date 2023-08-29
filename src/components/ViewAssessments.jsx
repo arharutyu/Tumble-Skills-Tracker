@@ -20,10 +20,18 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
 
   // Copy the current assessments to be edited
   const handleDeleteClick = (assessmentId, index) => {
+    const confirmed = window.confirm("Are you sure you want to delete this assessment?")
+    if (confirmed) {
     // Call API to delete the assessment
     del(ASSESSMENTS, assessmentId, accessToken)
     // Fetch updated assessments after deletion
-    fetchAssessments()
+    .then(() => {
+      fetchAssessments()
+    })
+    .catch((error) => {
+      console.error('Error while deleting assessment:', error)
+    })
+}
   }
 
   // Function to handle changes in input fields during editing
