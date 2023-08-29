@@ -60,7 +60,7 @@ const AddUser = ({accessToken, isAdmin}) => {
             </Form.Group>
             <Form.Group className="mb-3" controlId="isAdmin">
               <Form.Label>Admin:</Form.Label>
-              <input type="checkbox" placeholder="Admin" value={admin} onChange={e => setAdmin(e.target.checked)} />
+              <input type="checkbox" placeholder="Admin" value={admin} onClick={e => setAdmin(e.target.checked)} />
             </Form.Group>
 
             <Button variant="primary" type="submit">

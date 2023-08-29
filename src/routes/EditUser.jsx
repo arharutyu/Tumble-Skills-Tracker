@@ -43,6 +43,7 @@ const EditUser = ({isAdmin, accessToken}) => {
         // Handle change for Password input
         const handleAdminChange = (event) => {
             setUpdate({ ...update, isAdmin: event.target.checked})
+            console.log(event.target.checked)
         }
     
          // Handle form submission
@@ -52,6 +53,7 @@ const EditUser = ({isAdmin, accessToken}) => {
             // Update only if the name has changed
             setUpdate({ ...update, name: event.target.name.value });
           }
+
           // Send PUT request to update user data
           await put(`${USERS}/${userId.id}`, update, accessToken)
           console.log('PUT request done')
@@ -78,7 +80,7 @@ const EditUser = ({isAdmin, accessToken}) => {
           <Form.Control id="password" type="text" placeholder={user.password} onChange={handlePassChange} />
           <Form.Group className="mb-3" controlId="isAdmin">
               <Form.Label>Admin:</Form.Label>
-              <input type="checkbox" placeholder="Admin" value={user.isAdmin} onChange={handleAdminChange} />
+              <input type="checkbox" defaultChecked={user.isAdmin} placeholder="Admin" onClick={handleAdminChange} />
             </Form.Group>
           
           
