@@ -8,12 +8,13 @@ import { search } from '../api/api'
 const SearchText = ({ text, endpoint, set, accessToken }) => {
   // State to store the value entered in the search input
   const [searchValue, setSearchValue] = useState('')
+  // State for loading & message to display no results found
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
 
   useEffect(() => {
     setMessage('')
-    
+
     async function clickSearch() {
       set([])
       // Fetch data from the server using the search API and update state
