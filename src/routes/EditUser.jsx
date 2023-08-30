@@ -92,7 +92,7 @@ const EditUser = ({isAdmin, accessToken}) => {
             <InputGroup.Text>Admin:</InputGroup.Text>
           {/* <Form.Group className="mb-3" controlId="isAdmin">
               <Form.Label>Admin:</Form.Label> */}
-              <input type="checkbox" defaultChecked={user.isAdmin} placeholder="Admin" onClick={handleAdminChange} />
+              <input type="checkbox" defaultChecked={user.isAdmin} placeholder="Admin" onClick={handleAdminChange} className="edit-checkbox" />
           </InputGroup>
           
           
