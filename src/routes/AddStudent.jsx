@@ -37,7 +37,6 @@ const AddStudent = ({accessToken, isAdmin} ) => {
         if (errorData.error) {
           const errorMessages = errorData.error.split('Student validation failed: ')
           let errors = []
-          console.log(errorMessages)
 
           for (const errorMessage of errorMessages) {
             const splitErrors = errorMessage.split(', ')
@@ -68,7 +67,6 @@ const AddStudent = ({accessToken, isAdmin} ) => {
     event.preventDefault()
     setIsLoading(true)
   } 
-  console.log(message)
 
   return (
     <>

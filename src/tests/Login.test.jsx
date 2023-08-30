@@ -50,7 +50,6 @@ describe('App Component', () => {
             expect(container.querySelector('h3')).toHaveTextContent('Welcome Adam Minister!')
 
             testToken = sessionStorage.getItem('accessToken')
-            console.log(testToken)
           })
       })   
   })
@@ -197,14 +196,6 @@ describe('Student Component', () => {
     })
   })
   })
-
-  //   await waitFor(() => {
-  //     expect(container.querySelector('h1')).toBeInTheDocument()
-  //     expect(container.querySelector('h1')).toHaveTextContent('Students')
-  //     expect(container.querySelector('h3')).toBeInTheDocument()
-  //     expect(container.querySelector('h3')).toHaveTextContent('You must be an admin to access this resource.')
-  //   })
-  // })
 })
 
 describe('Add a new student', () => {

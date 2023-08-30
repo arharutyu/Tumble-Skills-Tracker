@@ -12,7 +12,6 @@ describe('Users Component', () => {
 
     expect(container.querySelector('h1')).toBeInTheDocument();
     expect(container.querySelector('h1')).toHaveTextContent('Users');
-    // expect(screen.getByText('Add Student'))
   })
 })
 

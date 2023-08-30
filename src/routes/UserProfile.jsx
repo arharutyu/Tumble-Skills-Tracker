@@ -22,7 +22,6 @@ const UserProfile = ({isAdmin, accessToken}) => {
         const endpoint = `${USERS}/${userId.id}`
         const res = await get(endpoint, accessToken)
         setUser(res)
-        console.log(user)
         })()
     }, [])
 

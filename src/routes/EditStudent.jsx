@@ -60,9 +60,7 @@ const EditStudent = ({isAdmin, accessToken}) => {
         // Update name only if the name has changed
         updatedStudent.name = event.target.name.value
       }
-      console.log(level)
-      console.log(student.skillLevel)
-      console.log(update)
+
       if (level !== student.skillLevel) {
         updatedStudent.skillLevel = level
       }

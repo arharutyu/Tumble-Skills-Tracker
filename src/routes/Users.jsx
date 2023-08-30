@@ -12,7 +12,6 @@ import AddCard from '../components/AddCard'
 
 const Users = ({isAdmin, accessToken}) => {
   const [users, setUser] = useState([])
-  console.log(accessToken)
   const addUser = { name: 'Add new User'}
 
   // Fetch users' data on component mount
@@ -20,7 +19,6 @@ const Users = ({isAdmin, accessToken}) => {
     (async () => {
       const data = await get(USERS, accessToken)
       setUser(data)
-      console.log(isAdmin)
     })()
   }, [])
   

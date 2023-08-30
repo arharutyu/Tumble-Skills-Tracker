@@ -11,9 +11,6 @@ const StartAssessment = ({accessToken}) => {
   const [assessed, setAssessed] = useState([])
   const [validationError, setValidationError] = useState(false)
 
-  console.log(student._id)
-  console.log(assessed)
-
   // Fetch student and assessment data from localStorage on component mount
   useEffect(() => {
     // Get student and assessment data from localStorage, or use empty arrays as default

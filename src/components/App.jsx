@@ -21,8 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [user, setUser] = useState([])
   const [accessToken, setAccessToken] = useState('')
-  console.log(user)
-  console.log(accessToken)
+
   useEffect(() => {
     const storedAccessToken = sessionStorage.getItem('accessToken')
     const storedUser = JSON.parse(sessionStorage.getItem('user'))

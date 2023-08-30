@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { put, del } from '../api/api'
-import { STUDENTS, ASSESSMENTS } from '../api/endpoints'
+import { ASSESSMENTS } from '../api/endpoints'
 import Accordion from 'react-bootstrap/Accordion'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
@@ -91,7 +91,6 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
           skillLevels.push(...skill.skill.levels)
         })
       const uniqueSkillLevels = [...new Set(skillLevels)]
-      console.log(uniqueSkillLevels)
 
           const isEditMode = index === editModeIndex;
 

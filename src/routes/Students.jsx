@@ -12,7 +12,6 @@ import AddCard from '../components/AddCard'
 
 const Students = ({isAdmin, accessToken}) => {
   const [students, setStudents] = useState([])
-  console.log(accessToken)
   const addStudent = { name: 'Add Student' }
 
   // Fetch students' data on component mount

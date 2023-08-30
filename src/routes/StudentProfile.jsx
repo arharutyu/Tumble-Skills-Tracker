@@ -40,8 +40,6 @@ const StudentProfile = ({isAdmin, accessToken}) => {
     })()
   }, [])
 
-  console.log(assessments)
-  
   return (
     <>
     
