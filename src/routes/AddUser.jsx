@@ -15,9 +15,47 @@ const AddUser = ({accessToken, isAdmin}) => {
     const [username, setUser] = useState('')
     const [password, setPassword] = useState('')
     const [admin, setAdmin] = useState(false)
+    const [nameError, setNameError] = useState(false)
+    const [usernameError, setUsernameError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
+
+
+    const handleNameChange = (event) => {
+      const value = event.target.value;
+      setName(value);
+      setNameError(value === '');
+    };
+    
+    const handleUserChange = (event) => {
+      const value = event.target.value;
+      setUser(value);
+      setUsernameError(value === '');
+    };
+    
+    const handlePassChange = (event) => {
+      const value = event.target.value;
+      setPassword(value);
+      setPasswordError(value === '');
+    };
 
     async function submit(event) {
         event.preventDefault()
+
+
+
+         // Perform validation
+        if (name === '') {
+          setNameError(true);
+          return;
+        }
+        if (username === '') {
+          setUsernameError(true);
+          return;
+        }
+        if (password === '') {
+          setPasswordError(true);
+          return;
+        }
 
         const newUser = {
             name: name,
@@ -46,17 +84,20 @@ const AddUser = ({accessToken, isAdmin}) => {
           <p>Enter user details below and submit.</p>
     
           <Form onSubmit={submit} id='add-user'>
-            <Form.Group className="mb-3" controlId="name">
+          <Form.Group className="mb-3" controlId="name">
               <Form.Label>Name:</Form.Label>
-              <Form.Control type="input" placeholder="Enter the user's name" value={name} onChange={e => setName(e.target.value)} />
+              <Form.Control type="input" placeholder="Enter the user's name" value={name} onChange={handleNameChange} />
+              {nameError && <p className="text-danger">Name cannot be empty.</p>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label>Username:</Form.Label>
-              <Form.Control type="input" placeholder="Enter the user's username" value={username} onChange={e => setUser(e.target.value)} />
+              <Form.Control type="input" placeholder="Enter the user's username" value={username} onChange={handleUserChange} />
+              {usernameError && <p className="text-danger">Username cannot be empty.</p>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
               <Form.Label>Password:</Form.Label>
-              <Form.Control type="input" placeholder="Enter the password" value={password} onChange={e => setPassword(e.target.value)} />
+              <Form.Control type="input" placeholder="Enter the password" value={password} onChange={handlePassChange} />
+              {passwordError && <p className="text-danger">Password cannot be empty.</p>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="isAdmin">
               <Form.Label>Admin:</Form.Label>
