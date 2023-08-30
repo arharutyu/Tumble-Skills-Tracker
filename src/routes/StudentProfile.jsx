@@ -22,7 +22,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
       // Fetch all assessments relevant to student
       const assessEp = `${ASSESSMENTS}/student/${studentId.id}`;
       const assessRes = await get(assessEp, accessToken);
-      setAssessments(assessRes);
+      setAssessments(assessRes.toReversed());
     } catch (error) {
       console.error('Error fetching assessments:', error);
     }
