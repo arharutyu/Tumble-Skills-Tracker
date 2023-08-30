@@ -8,7 +8,7 @@ import './NavBar.css'
 const NavBar = ({isAdmin}) => {
   return (
     <Navbar className="navbar-custom" expand="md" fixed="top" >
-        <Navbar.Brand className="custom-logo"><img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="100"></img></Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/" className="custom-logo"><img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="100"></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Container>
