@@ -1,4 +1,4 @@
-
+import '@testing-library/jest-dom'
 import { render, screen, waitFor, fireEvent } from './TestSetup.js'
 import App from '../components/App.jsx'
 import Users from '../routes/Users.jsx'
@@ -78,7 +78,7 @@ describe('Student Component', () => {
       expect(container.querySelector('h1')).toBeInTheDocument()
       expect(container.querySelector('h1')).toHaveTextContent('Students')
       expect(container.querySelector('h3')).not.toBeInTheDocument()
-
+      
 
       const studentCardContainers = container.querySelectorAll('.namefortesting')
       expect(studentCardContainers.length).toBeGreaterThan(0)
