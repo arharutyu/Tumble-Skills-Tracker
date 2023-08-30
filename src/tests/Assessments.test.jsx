@@ -1,7 +1,9 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from './TestSetup.js'
 import NewAssessment from '../routes/NewAssessment.jsx'
-
+import { describe, expect, it } from 'vitest'
+import StartAssessment from '../routes/StartAssessment.jsx'
+import StartButton from '../components/StartButton.jsx'
 
 describe('New Assessment Component', () => {
   it('renders the new assessment component', () => {
@@ -24,3 +26,21 @@ describe('New Assessment Component', () => {
     // TODO: Finish so this actually tests
   })
 })
+
+describe('Start Assessment component', () => {
+ it('renders with assessment columns and submit button', () => {
+    render(<StartAssessment />)
+    const columnHeaderElements = screen.queryAllByRole('columnheader')
+
+    expect(screen.getByRole('button', {name: "Submit Assessment"})).toBeInTheDocument()
+    expect(columnHeaderElements).toHaveLength(7)
+  }) 
+})
+
+describe('Start Assessment Button', () => {
+ it('renders with assessment columns and submit button', () => {
+    render(<StartButton />)
+    expect(screen.getByRole('button', {name: "Start Assessment"})).toBeInTheDocument()
+  }) 
+})
+
