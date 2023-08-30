@@ -12,15 +12,19 @@ const NewAssessment = ({ accessToken }) => {
   const [student, setStudent] = useState([])
   const [name, setName] = useState('')
   const [assessSkills, setAssessSkills] = useState([])
+  const [studentMessage, setStudentMessage] = useState('')
+  const [levelMessage, setLevelMessage] = useState('')
 
   // Fetch student data and update state when a student is selected
   useEffect(() => {
     if (student.length > 0) {
         (async () => {
+          setStudentMessage('Loading student')
           let endpoint = `/students/${student}`
           const data = await get(endpoint, accessToken)
           setStudent(data)
           setName(data.name)
+          setStudentMessage('')
           })()
     }
   }, [student])
@@ -31,7 +35,8 @@ const NewAssessment = ({ accessToken }) => {
     <h1>New Assessment</h1>
     <GetStudent setStudent={setStudent} accessToken={accessToken} />
     {name && <ProfileCard name={name} />}
-    <GetLevel setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
+    {studentMessage ? <p>{studentMessage}</p>: null}
+    <GetLevel levelMessage={levelMessage} setLevelMessage={setLevelMessage} setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
     {name && (assessSkills.length > 0) && <StartButton student={student} assessSkills={assessSkills} />}
   </Container>
   </>
