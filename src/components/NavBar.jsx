@@ -4,8 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './NavBar.css'
+import LogoutButton from './LogoutButton';
 
-const NavBar = ({isAdmin}) => {
+const NavBar = ({isAdmin, setIsLoggedIn}) => {
   return (
     <Navbar className="navbar-custom" expand="md" fixed="top" >
         <Navbar.Brand as={NavLink} to="/" className="custom-logo"><img src="https://eliteallstars.com.au/wp-content/uploads/2019/06/eliteAsset-2.png" alt="Logo" width="100"></img></Navbar.Brand>
@@ -23,6 +24,10 @@ const NavBar = ({isAdmin}) => {
               activeclassname="active-link"
               disabled={!isAdmin}
               >Users</Nav.Link>
+
+              <Nav.Link>
+                <LogoutButton setIsLoggedIn={setIsLoggedIn} />
+              </Nav.Link>
           </Nav>
           </Container>
         </Navbar.Collapse>

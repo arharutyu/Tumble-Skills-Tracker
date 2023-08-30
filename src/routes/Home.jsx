@@ -9,7 +9,7 @@ import assessmentIcon from '../assets/assessment.png'
 import usersIcon from '../assets/users.png'
 import LogoutButton from '../components/LogoutButton'
 
-const Home = ({isAdmin, name, setIsLoggedIn }) => {
+const Home = ({isAdmin, name }) => {
   // Cards to render for all user types
   let cards = [{
     title: "Students", 
@@ -53,7 +53,7 @@ const Home = ({isAdmin, name, setIsLoggedIn }) => {
   <Container className="contcontainer">
     <h1>Home</h1>
     <h3>Welcome {name}!</h3>
-    <LogoutButton setIsLoggedIn={setIsLoggedIn} />
+    
     <Row xs={1} md={2} lg={lgBp} className="g-4">
       {cards.map((card, index) => (
         <Col key={index}>
