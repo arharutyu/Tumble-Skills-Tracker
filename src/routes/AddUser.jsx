@@ -85,7 +85,7 @@ const AddUser = ({accessToken, isAdmin}) => {
                 type="input"
                 placeholder="Enter the user's username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUser(e.target.value)}
               />
               {errors.username && <p className="text-danger">Username cannot be empty.</p>}
             </Form.Group>
