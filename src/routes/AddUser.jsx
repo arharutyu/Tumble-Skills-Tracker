@@ -110,6 +110,7 @@ const AddUser = ({accessToken, isAdmin}) => {
                 placeholder="Admin"
                 value={admin}
                 onClick={(e) => setAdmin(e.target.checked)}
+                className="add-checkbox"
               />
             </Form.Group>
 

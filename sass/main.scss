@@ -18,7 +18,22 @@ body {
     background-color: #FCB16B; 
   }
 
+.edit-checkbox {
+  margin-left: 10px !important;
+  height: 25px;
+  width: 25px;
+  position: relative !important;
+  top: 6px;
+}
 
+.add-checkbox {
+  margin-left: 10px !important;
+  height: 25px;
+  width: 25px;
+  position: relative !important;
+  top: 7.5px !important;
+  }
+   
 
 // import bootstrap
 @import '../node_modules/bootstrap/scss/bootstrap';
