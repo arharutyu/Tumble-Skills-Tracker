@@ -9,7 +9,7 @@ describe('Skills Component', () => {
   
       expect(container.querySelector('h1')).toBeInTheDocument()
       expect(container.querySelector('h1')).toHaveTextContent('Skills')
-      expect(screen.getByText('Beginner / Novice Skills'))
+      expect(screen.getByText('Level 1'))
       
     })
 
@@ -29,7 +29,7 @@ describe('Skills Component', () => {
     it('opens and closes accordion when clicked', async () => {
       render(<Skills />)
 
-      const beginnerAccordion = screen.getByText(/Beginner \/ Novice Skills/i)
+      const beginnerAccordion = screen.getByText('Level 1')
       expect(beginnerAccordion).toBeInTheDocument()
 
       fireEvent.click(beginnerAccordion)
