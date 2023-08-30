@@ -26,9 +26,6 @@ const GetLevel = ({setAssessSkills, assessSkills}) => {
         <Dropdown.Item onClick={() => setLevel(1)}>Level 1</Dropdown.Item>
         <Dropdown.Item onClick={() => setLevel(2)}>Level 2</Dropdown.Item>
         <Dropdown.Item onClick={() => setLevel(3)}>Level 3</Dropdown.Item>
-        <Dropdown.Item onClick={() => setLevel(4)}>Level 4</Dropdown.Item>
-        <Dropdown.Item onClick={() => setLevel(5)}>Level 5</Dropdown.Item>
-        <Dropdown.Item onClick={() => setLevel(6)}>Level 6</Dropdown.Item>
       </DropdownButton>
 
       {assessSkills.length > 0 ? (
