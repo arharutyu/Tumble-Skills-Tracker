@@ -5,6 +5,7 @@ import App from '../components/App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import Home from '../routes/Home.jsx'
 import Students from '../routes/Students.jsx'
+import NavBar from '../components/NavBar.jsx'
 
 describe('App Component', () => {
   it('renders the login component if not logged in', () => {
