@@ -2,7 +2,7 @@ import Card from 'react-bootstrap/Card'
 import React from 'react'
 
 
-const StudentCard = ({ name }) => {
+const ProfileCard = ({ name }) => {
   return ( <>
     <Card className='namefortesting'>
       <Card.Body>
@@ -13,4 +13,4 @@ const StudentCard = ({ name }) => {
   )
 }
 
-export default StudentCard
+export default ProfileCard

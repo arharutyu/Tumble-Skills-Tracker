@@ -4,7 +4,7 @@ import '../components/App.css'
 import GetLevel from '../components/GetLevel'
 import GetStudent from '../components/GetStudent'
 import { get } from '../api/api'
-import StudentCard from '../components/StudentCard'
+import ProfileCard from '../components/ProfileCard'
 import StartButton from '../components/StartButton'
 
 const NewAssessment = ({ accessToken }) => {
@@ -30,7 +30,7 @@ const NewAssessment = ({ accessToken }) => {
   <Container className="contcontainer">
     <h1>New Assessment</h1>
     <GetStudent setStudent={setStudent} accessToken={accessToken} />
-    {name && <StudentCard name={name} />}
+    {name && <ProfileCard name={name} />}
     <GetLevel setAssessSkills={setAssessSkills} assessSkills={assessSkills}/>
     {name && (assessSkills.length > 0) && <StartButton student={student} assessSkills={assessSkills} />}
   </Container>

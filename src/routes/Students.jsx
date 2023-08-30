@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import StudentCard from '../components/StudentCard'
+import ProfileCard from '../components/ProfileCard'
 import SearchText from '../components/SearchText'
 import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
@@ -33,7 +33,7 @@ const Students = ({isAdmin, accessToken}) => {
       {students.length > 0 && (<>
       {students.map((student, index) => (
         <Col key={index}>
-          <StudentCard name={
+          <ProfileCard name={
             <Link to={`/students/${student._id}`}>
             {student.name} </Link>
             } />

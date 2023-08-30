@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Container from 'react-bootstrap/Container'
-import StudentCard from '../components/StudentCard'
+import ProfileCard from '../components/ProfileCard'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import SubmitAsssessment from '../components/SubmitAsssessment'
@@ -42,7 +42,7 @@ const StartAssessment = ({accessToken}) => {
     <>
       <Container className="contcontainer">
         <h1>Assessment</h1>
-        <StudentCard name={student.name} />
+        <ProfileCard name={student.name} />
         <h3>Skills</h3>
         <ScoringKey />
         <Table striped>
