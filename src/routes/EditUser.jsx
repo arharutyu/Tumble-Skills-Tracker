@@ -5,6 +5,7 @@ import { USERS } from '../api/endpoints'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const EditUser = ({isAdmin, accessToken}) => {
     const [user, setUser] = useState([])
@@ -71,16 +72,28 @@ const EditUser = ({isAdmin, accessToken}) => {
             placeholder={user._id}
             readOnly
           />
-          <Form.Label>Name:</Form.Label>
-          <Form.Control id="name" type="text" placeholder={user.name} onChange={handleNameChange} />
-          <Form.Label>Username:</Form.Label>
-          <Form.Control id="username" type="text" placeholder={user.username} onChange={handleUserChange} />
-          <Form.Label>Password:</Form.Label>
-          <Form.Control id="password" type="text" placeholder={user.password} onChange={handlePassChange} />
-          <Form.Group className="mb-3" controlId="isAdmin">
-              <Form.Label>Admin:</Form.Label>
+
+          <InputGroup className="mb-3">
+            <InputGroup.Text>Name:</InputGroup.Text>
+            <Form.Control id="name" type="text" placeholder={user.name} onChange={handleNameChange} />
+          </InputGroup>
+
+          <InputGroup className="mb-3">
+            <InputGroup.Text>Username:</InputGroup.Text>
+            <Form.Control id="username" type="text" placeholder={user.username} onChange={handleUserChange} />
+          </InputGroup>
+          
+          <InputGroup className="mb-3">
+            <InputGroup.Text>Password:</InputGroup.Text>
+            <Form.Control id="password" type="text" placeholder={user.password} onChange={handlePassChange} />
+          </InputGroup>
+
+          <InputGroup className="mb-3" controlId="isAdmin">
+            <InputGroup.Text>Admin:</InputGroup.Text>
+          {/* <Form.Group className="mb-3" controlId="isAdmin">
+              <Form.Label>Admin:</Form.Label> */}
               <input type="checkbox" defaultChecked={user.isAdmin} placeholder="Admin" onClick={handleAdminChange} />
-            </Form.Group>
+          </InputGroup>
           
           
           <Button variant="primary" type="submit">Submit</Button></Form>

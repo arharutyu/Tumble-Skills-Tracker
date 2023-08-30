@@ -6,6 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import { get } from '../api/api'
 import { USERS } from '../api/endpoints'
 import AdminMenu from '../components/AdminMenu'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 const UserProfile = ({isAdmin, accessToken}) => {
     // State to store user data
