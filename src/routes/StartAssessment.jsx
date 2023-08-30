@@ -4,6 +4,7 @@ import StudentCard from '../components/StudentCard'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
 import SubmitAsssessment from '../components/SubmitAsssessment'
+import ScoringKey from '../components/ScoringKey'
 
 const StartAssessment = ({accessToken}) => {
   const [student, setStudent] = useState([])
@@ -43,6 +44,7 @@ const StartAssessment = ({accessToken}) => {
         <h1>Assessment</h1>
         <StudentCard name={student.name} />
         <h3>Skills</h3>
+        <ScoringKey />
         <Table striped>
           <thead>
           <tr>

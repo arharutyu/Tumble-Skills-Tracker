@@ -7,6 +7,7 @@ import { get } from '../api/api'
 import { STUDENTS, ASSESSMENTS } from '../api/endpoints'
 import AdminMenu from '../components/AdminMenu'
 import ViewAssessments from '../components/ViewAssessments'
+import ScoringKey from '../components/ScoringKey'
 
 const StudentProfile = ({isAdmin, accessToken}) => {
   // State to store student data
@@ -65,6 +66,7 @@ const StudentProfile = ({isAdmin, accessToken}) => {
 
     <Card.Body>
         <Card.Title>Assessments</Card.Title>
+        <ScoringKey />
     </Card.Body>
 
     <Card.Body>
