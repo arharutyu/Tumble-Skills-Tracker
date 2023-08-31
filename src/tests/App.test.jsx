@@ -1,10 +1,10 @@
 import '@testing-library/jest-dom'
-import { render, screen, noRouterRender, fireEvent } from './TestSetup.js'
+
+import { render, screen } from './TestSetup.js'
 import App from '../components/App.jsx'
+import { BrowserRouter } from 'react-router-dom'
 import Home from '../routes/Home.jsx'
-import NavBar from '../components/NavBar.jsx'
-import { MemoryRouter } from 'react-router-dom'
-import { expect } from 'vitest'
+import Students from '../routes/Students.jsx'
 
 describe('App Component', () => {
   it('renders the login component if not logged in', () => {
@@ -14,6 +14,7 @@ describe('App Component', () => {
     expect(container.querySelector('h1')).toHaveTextContent('Tumble Skills Tracker Login');
   });
 })
+
 
 describe('NavBar Component', () => {
   it('renders', () => {
@@ -42,4 +43,3 @@ describe('Home Component', () => {
     expect(container.querySelector('h3')).toHaveTextContent('Welcome');
   })
 })
-
