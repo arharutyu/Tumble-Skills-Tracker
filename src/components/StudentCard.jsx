@@ -4,7 +4,7 @@ import React from 'react'
 
 const StudentCard = ({ name }) => {
   return ( <>
-    <Card>
+    <Card className='namefortesting'>
       <Card.Body>
         <Card.Title>{name}</Card.Title>
       </Card.Body>
