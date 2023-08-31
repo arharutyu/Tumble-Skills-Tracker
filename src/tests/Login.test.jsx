@@ -40,12 +40,36 @@ describe('App Component', () => {
       })   
   })
 
-describe ('User Component', () => {
-  it ('renders a list of users', () => {
+
+
+describe('User Component', () => {
+  it('renders a list of users for an admin user', async () => {
+    const { container } = render(<Users accessToken={testToken} isAdmin={true} />)
+
+    await waitFor(() => {
+      expect(container.querySelector('h1')).toBeInTheDocument()
+      expect(container.querySelector('h1')).toHaveTextContent('Users')
+      expect(container.querySelector('h3')).not.toBeInTheDocument()
+
+
+      const userCardContainers = container.querySelectorAll('.namefortesting')
+      expect(userCardContainers.length).toBeGreaterThan(0)
+
+      const userNames = Array.from(userCardContainers).map(container => container.textContent.trim())
+      expect(userNames).toContain('Adam Minister')
+      expect(userNames).toContain('Jay Son')
+    })
+  })
+
+  it('shows a message for a non-admin user', async () => {
     const { container } = render(<Users />)
 
-    expect(container.querySelector('h1')).toBeInTheDocument()
-    expect(container.querySelector('h1')).toHaveTextContent('Users')
+    await waitFor(() => {
+      expect(container.querySelector('h1')).toBeInTheDocument()
+      expect(container.querySelector('h1')).toHaveTextContent('Users')
+      expect(container.querySelector('h3')).toBeInTheDocument()
+      expect(container.querySelector('h3')).toHaveTextContent('You must be an admin to access this resource.')
+    })
   })
 })
 
