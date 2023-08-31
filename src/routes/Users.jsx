@@ -27,11 +27,12 @@ const Users = ({isAdmin, accessToken}) => {
   return (<>
   <Container className="contcontainer">
     <h1>Users</h1>
+    {isAdmin ? (<>
     <SearchText text="Search for a user" endpoint={USERS} accessToken={accessToken} set={setUser}  />
     <Row xs={1} md={4} lg={6} className="g-4">
-      {isAdmin && (<>
+      
       <Col key="add"><AddCard type="User" link="/users/new" /></Col>
-      </>)}
+      
       {users.length > 0 && (<>
       {users.map((user, index) => (
         <Col key={index}>
@@ -44,7 +45,8 @@ const Users = ({isAdmin, accessToken}) => {
       </>
       )
       }
-    </Row>
+    </Row></>) : (
+        <h3>You must be an admin to access this resource.</h3>)}
     </Container>
     </>
   )
