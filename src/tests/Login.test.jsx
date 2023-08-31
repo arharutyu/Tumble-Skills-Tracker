@@ -1,10 +1,13 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor, fireEvent } from './TestSetup.js'
 import App from '../components/App.jsx'
+import Users from '../routes/Users.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import Home from '../routes/Home.jsx'
 import Students from '../routes/Students.jsx'
 import { expect } from 'vitest'
+
+let testToken
 
 describe('App Component', () => {
     it('renders the login component if not logged in', () => {
@@ -24,15 +27,25 @@ describe('App Component', () => {
         fireEvent.change(usernameInput, { target: { value: 'eliteadmin' } })
         fireEvent.change(passwordInput, { target: { value: 'spameggs' } })
 
-        
-        
         fireEvent.click(submitButton)
+        
     
         await waitFor(() => {
             expect(container.querySelector('h3')).toBeInTheDocument()
             expect(container.querySelector('h3')).toHaveTextContent('Welcome Adam Minister!')
+
+            testToken = sessionStorage.getItem('accessToken')
+            console.log(testToken)
           })
-      
-      })
+      })   
   })
+
+describe ('User Component', () => {
+  it ('renders a list of users', () => {
+    const { container } = render(<Users />)
+
+    expect(container.querySelector('h1')).toBeInTheDocument()
+    expect(container.querySelector('h1')).toHaveTextContent('Users')
+  })
+})
 
