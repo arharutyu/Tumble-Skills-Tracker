@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.66% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>26/120</span>
+                <span class='fraction'>15/120</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">21.66% </span>
+                <span class="strong">12.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>26/120</span>
+                <span class='fraction'>15/120</span>
             </div>
         
             
@@ -185,23 +185,23 @@
 <a name='L120'></a><a href='#L120'>120</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -304,23 +304,23 @@
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { API_BASE_URL } from './endpoints.js'
 &nbsp;
 // GET request
-async function get(endpoint, accessToken) {
-  try {  
-    const res = await fetch(`${API_BASE_URL}${endpoint}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${accessToken}`,
-          }
-        }
-        )
-<span class="cstat-no" title="statement not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >        const data = await res.json()</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function get(endpoint, accessToken) {</span></span>
+<span class="cstat-no" title="statement not covered" >  try {  </span>
+<span class="cstat-no" title="statement not covered" >    const res = await fetch(`${API_BASE_URL}${endpoint}`, {</span>
+<span class="cstat-no" title="statement not covered" >          method: 'GET',</span>
+<span class="cstat-no" title="statement not covered" >          headers: {</span>
+<span class="cstat-no" title="statement not covered" >            'Content-Type': 'application/json',</span>
+<span class="cstat-no" title="statement not covered" >            'Authorization': `${accessToken}`,</span>
+<span class="cstat-no" title="statement not covered" >          }</span>
+<span class="cstat-no" title="statement not covered" >        }</span>
+<span class="cstat-no" title="statement not covered" >        )</span>
+<span class="cstat-no" title="statement not covered" >        const data = await res.json()</span>
 <span class="cstat-no" title="statement not covered" >        return data</span>
 <span class="cstat-no" title="statement not covered" >  } catch (error) {</span>
 <span class="cstat-no" title="statement not covered" >        console.error('Error while making GET request:', error)</span>
 <span class="cstat-no" title="statement not covered" >        throw error</span>
 <span class="cstat-no" title="statement not covered" >      }</span>
-}
+<span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
 // GET request with query parameters
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async function search(endpoint, search, accessToken) {</span></span>
@@ -427,7 +427,7 @@ export { get, search, skills, post, put, del }</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-30T23:52:24.657Z
+                at 2023-08-31T01:58:08.814Z
             </div>
         <script src="../prettify.js"></script>
         <script>
