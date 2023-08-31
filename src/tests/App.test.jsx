@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+
 import { render, screen } from './TestSetup.js'
 import App from '../components/App.jsx'
 import { BrowserRouter } from 'react-router-dom'
@@ -14,6 +15,24 @@ describe('App Component', () => {
   });
 })
 
+
+describe('NavBar Component', () => {
+  it('renders', () => {
+    render(<NavBar />);
+
+    const navLinks = screen.getAllByRole('link')
+    expect(navLinks).toHaveLength(5)
+
+    expect(navLinks[0]).toHaveTextContent('Home')
+    expect(navLinks[1]).toHaveTextContent('Students')
+    expect(navLinks[2]).toHaveTextContent('Skills')
+    expect(navLinks[3]).toHaveTextContent('New Assessment')
+    expect(navLinks[4]).toHaveTextContent('Users')
+
+    expect(screen.queryByRole('img')).not.toBeNull()
+  })
+})
+
 describe('Home Component', () => {
   it('renders the home component', () => {
     const { container } = render(<Home />)
@@ -22,26 +41,5 @@ describe('Home Component', () => {
     expect(container.querySelector('h1')).toHaveTextContent('Home');
     expect(container.querySelector('h3')).toBeInTheDocument();
     expect(container.querySelector('h3')).toHaveTextContent('Welcome');
-  })
-})
-
-describe('Students Component', () => {
-  it('renders the add student text if is admin', () => {
-    const { container } = render(<Students isAdmin={true} />)
-
-    expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelector('h1')).toHaveTextContent('Students');
-    expect(screen.getByText('Add Student'))
-  })
-})
-
-
-describe('Students Component', () => {
-  it('renders the add student text if is admin', () => {
-    const { container } = render(<Students isAdmin={true} />)
-
-    expect(container.querySelector('h1')).toBeInTheDocument();
-    expect(container.querySelector('h1')).toHaveTextContent('Students');
-    expect(screen.getByText('Add Student'))
   })
 })

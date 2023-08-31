@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom'
+
 import { render, screen, waitFor, fireEvent } from './TestSetup.js'
 import App from '../components/App.jsx'
 import Users from '../routes/Users.jsx'
@@ -101,5 +101,3 @@ describe('Student Component', () => {
   //   })
   // })
 })
-
-

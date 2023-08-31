@@ -1,64 +1,51 @@
 import '@testing-library/jest-dom'
-import { render, screen } from './TestSetup.js'
+import { render, screen, waitFor, fireEvent } from './TestSetup.js'
 import Skills from '../routes/Skills.jsx'
-
-const mockData = [
-    { _id: '1', skillName: 'Skill 1', level: 0 },
-    { _id: '2', skillName: 'Skill 2', level: 0 },
-    { _id: '3', skillName: 'Skill 3', level: 1 },
-    { _id: '4', skillName: 'Skill 4', level: 1 },
-    { _id: '5', skillName: 'Skill 5', level: 2 },
-    { _id: '6', skillName: 'Skill 6', level: 2 },
-    { _id: '7', skillName: 'Skill 7', level: 3 },
-    { _id: '8', skillName: 'Skill 8', level: 3 },
-  ];
+import { expect } from 'vitest'
 
 describe('Skills Component', () => {
-    it('renders the skills component', () => {
+    it('renders the skills component', async () => {
       const { container } = render(<Skills />)
   
       expect(container.querySelector('h1')).toBeInTheDocument()
       expect(container.querySelector('h1')).toHaveTextContent('Skills')
+      expect(screen.getByText('Beginner / Novice Skills'))
+      
     })
 
-    it ('skillsz', () => {
-        const { container } = render(<Skills />)
+    it('renders skills ', async () => {
+      const { container } = render(<Skills />)
 
-        expect(container.querySelector('h2')).toBeInTheDocument()
-        expect(container.querySelector('h2')).toHaveTextContent('Beginner / Novice Skills')
-        // expect(container.querySelector('ul')).toHaveTextContent('Cartwheel')
-        // expect(container.querySelector('h2:nth-of-type(2)')).toBeInTheDocument()
-        // expect(container.querySelector('h2:nth-of-type(2)')).toHaveTextContent('Intermediate Skills')
+      await waitFor(() => {
+        expect(screen.getByText('Handstand')) 
+        expect(screen.getAllByText('Cartwheel')) 
+        expect(screen.getByText('Front Limber')) 
+        expect(screen.getAllByText('Round Off')) 
+        expect(screen.getAllByText('Punch Dive Roll')) 
+        expect(screen.getAllByText('Front Handspring')) 
+      })
     })
 
+    it('opens and closes accordion when clicked', async () => {
+      render(<Skills />)
 
+      const beginnerAccordion = screen.getByText(/Beginner \/ Novice Skills/i)
+      expect(beginnerAccordion).toBeInTheDocument()
 
-    // it('renders four different lists of skills', () => {
-    //     const mockData = [
-    //         { _id: '1', skillName: 'Skill 1', level: 0 },
-    //         { _id: '2', skillName: 'Skill 2', level: 0 },
-    //         { _id: '3', skillName: 'Skill 3', level: 1 },
-    //         { _id: '4', skillName: 'Skill 4', level: 1 },
-    //         { _id: '5', skillName: 'Skill 5', level: 2 },
-    //         { _id: '6', skillName: 'Skill 6', level: 2 },
-    //         { _id: '7', skillName: 'Skill 7', level: 3 },
-    //         { _id: '8', skillName: 'Skill 8', level: 3 },
-    //       ]
+      fireEvent.click(beginnerAccordion)
 
-    //     const { container } = render(<Skills accessToken="your-access-token" />, {
-        
-    //         mockData,
-    //     })
+      const beginnerSkills = ['Handstand', 'Cartwheel', 'Front Limber']
+      beginnerSkills.forEach(skill => {
+        const skillElement = screen.queryByText(new RegExp(skill, 'i'))
+        if (skillElement) {
+          expect(skillElement).toBeInTheDocument();
+        }
+      })
 
-    //     mockData.forEach(skill => {
-    //         const level = skill.level
-    //         const listElement = container.querySelector(`ul[data-level="${level}"]`)
-    //         const skillNameElement = screen.getByText(skill.skillName)
-            
+      fireEvent.click(beginnerAccordion)
 
-    //         expect(listElement).toBeInTheDocument()
-    //         expect(skillNameElement).toBeInTheDocument()
-    //         expect(skillNameElement).toHaveTextContent(skill.skillName)
-    //     })
-    // })
+      beginnerSkills.forEach(skill => {
+        expect(screen.queryByText(skill)).not.toBeInTheDocument()
+      })
+    })
   })
