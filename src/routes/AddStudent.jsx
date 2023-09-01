@@ -89,7 +89,7 @@ const AddStudent = ({accessToken, isAdmin} ) => {
 
         <Form.Group className="mb-3" controlId="skillLevel">
           <Form.Label>Skill level:</Form.Label>
-          <DropdownButton id="levels" title={level === 0 ? 'Novice' : level ? `Level: ${level}` : "Choose a level"}>
+          <DropdownButton data-testid='skill-level-dropdown' id="levels" title={level === 0 ? 'Novice' : level ? `Level: ${level}` : "Choose a level"}>
             <Dropdown.Item onClick={() => setLevel(0)}>Novice</Dropdown.Item>
             <Dropdown.Item onClick={() => setLevel(1)}>Level 1</Dropdown.Item>
             <Dropdown.Item onClick={() => setLevel(2)}>Level 2</Dropdown.Item>
