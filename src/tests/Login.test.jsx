@@ -7,7 +7,8 @@ import Students from '../routes/Students.jsx'
 import StudentProfile from '../routes/StudentProfile.jsx'
 import AddStudent from '../routes/AddStudent.jsx'
 import EditStudent from '../routes/EditStudent.jsx'
-import { describe, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
+import UserProfile from '../routes/UserProfile.jsx'
 
 let testToken
 
@@ -83,6 +84,42 @@ describe('User Component', () => {
       expect(container.querySelector('h3')).toHaveTextContent('You must be an admin to access this resource.')
     })
   })
+
+  it('navigates to user profile when clicked', async () => {
+    const { container } = render(<Users accessToken={testToken} isAdmin={true} />)
+
+    await waitFor(() => {
+      const usersCardContainers = container.querySelectorAll('.namefortesting')
+      expect(usersCardContainers.length).toBeGreaterThan(0)
+
+      const userNames = Array.from(usersCardContainers).map(container => container.textContent.trim())
+      expect(userNames).toContain('Adam Minister')
+      expect(userNames).toContain('Jay Son')
+    })
+
+    const userCard = screen.getByText('Adam Minister')
+    fireEvent.click(userCard)
+    expect(window.location.pathname).toBe('/users/64ec7d15e801599240bcbeef')
+  })
+
+  describe('User Profile Component', () => {
+  it('renders with user information and admin button', async () => {
+    const { container } = render(<UserProfile accessToken={testToken} isAdmin={true} />, 
+    { student: {
+      "_id": "64ec7d15e801599240bcbeef",
+      "username": "eliteadmin",
+      "name": "Adam Minister",
+      "isAdmin": true,
+      "__v": 0
+    }}) 
+
+    await waitFor(() => {
+      expect(container.querySelector('h1')).toBeInTheDocument()
+      expect(container.querySelector('h1')).toHaveTextContent('User:')
+      expect(container.querySelector('#admin')).toBeInTheDocument()
+    })
+  })
+  })
 })
 
 describe('Student Component', () => {
@@ -102,6 +139,7 @@ describe('Student Component', () => {
       expect(studentNames).toContain('Lachie')
       expect(studentNames).toContain('Max')
       expect(studentNames).toContain('Argine')
+      
     })
   })
 
@@ -124,7 +162,7 @@ describe('Student Component', () => {
   })
 
   describe('Student Profile Component', () => {
-  it('renders admin menu for an admin user', async () => {
+  it('renders with student information and admin button if admin', async () => {
     const { container } = render(<StudentProfile accessToken={testToken} isAdmin={true} />, { student: {
       "_id": "64ec7d15e801599240bcbef2",
       "name": "Lachie",
@@ -138,6 +176,24 @@ describe('Student Component', () => {
       expect(container.querySelector('h1')).toHaveTextContent('Student')
       expect(screen.getByText('Student Information')).toBeInTheDocument()
       expect(screen.getByText('Assessments')).toBeInTheDocument()
+      expect(container.querySelector('#admin')).toBeInTheDocument()
+    })
+  })
+  it('renders with student information and without admin button for non admins', async () => {
+    const { container } = render(<StudentProfile accessToken={testToken} isAdmin={false} />, { student: {
+      "_id": "64ec7d15e801599240bcbef2",
+      "name": "Lachie",
+      "DOB": "1996-09-04T00:00:00.000Z",
+      "skillLevel": 6,
+      "__v": 0
+    }}) 
+
+    await waitFor(() => {
+      expect(container.querySelector('h1')).toBeInTheDocument()
+      expect(container.querySelector('h1')).toHaveTextContent('Student')
+      expect(screen.getByText('Student Information')).toBeInTheDocument()
+      expect(screen.getByText('Assessments')).toBeInTheDocument()
+      expect(container.querySelector('#admin')).not.toBeInTheDocument()
     })
   })
   })
