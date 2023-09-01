@@ -1,8 +1,13 @@
 import '@testing-library/jest-dom'
 import { render, screen, waitFor, fireEvent } from './TestSetup.js'
+import userEvent from '@testing-library/user-event'
 import App from '../components/App.jsx'
 import Users from '../routes/Users.jsx'
 import Students from '../routes/Students.jsx'
+import AddStudent from '../routes/AddStudent.jsx'
+import EditStudent from '../routes/EditStudent.jsx'
+
+import { describe, it } from 'vitest'
 
 let testToken
 
@@ -101,3 +106,36 @@ describe('Student Component', () => {
   //   })
   // })
 })
+
+describe('Add a new student', () => {
+  it('adds a new student', async () => {
+    const user = userEvent.setup()
+    const { container } = render(<AddStudent accessToken={testToken} isAdmin={true}/>)
+  
+    const nameInput = screen.getByLabelText('Name:')
+    const dobInput = screen.getByLabelText('Date of Birth:')
+    const skillLevelDropdown = screen.getByTestId('skill-level-dropdown')
+    const submitButton = screen.getByText('Submit')
+
+    expect(nameInput).toBeInTheDocument()
+    expect(dobInput).toBeInTheDocument()
+    expect(skillLevelDropdown).toBeInTheDocument()
+    expect(submitButton).toBeInTheDocument()
+  })
+})
+
+describe('edit students', () => {
+  it('renders the edit student component for an admin user', () => {
+    const { container } = render(<EditStudent accessToken={testToken} isAdmin={true}/>)
+    expect(container.querySelector('h1')).toBeInTheDocument()
+    expect(container.querySelector('h1')).toHaveTextContent('Update Student')
+  })
+
+  it('renders a forbidden access message for non admins', () => {
+    const { container } = render(<EditStudent />)
+    expect(container.querySelector('h3')).toBeInTheDocument()
+    expect(container.querySelector('h3')).toHaveTextContent('You must be an admin to access this resource.')
+  })
+})
+
+
