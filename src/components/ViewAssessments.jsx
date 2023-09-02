@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button'
 
 const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }) => {
 
-
   const hasInvalidScores = () => {
     for (const editedAssessment of editedAssessments) {
       for (const skill of editedAssessment.skills) {
@@ -81,6 +80,19 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
     console.error('Error while saving changes:', error)
   }
 }
+
+// Function to convert number score to score descr
+const scoreFormat = (score) => {
+  switch (score) {
+    case 0: return 'Attempted'
+    case 1: return 'Working Towards'
+    case 2: return 'Acceptable'
+    case 3: return 'Exceeds Expectations'
+    case 4: return 'Outstanding'
+    // default: return 'Error with score'
+  }
+}
+
 // Render the assessment items in an accordion
   return (
     <Accordion defaultActiveKey="0">
@@ -162,9 +174,7 @@ const ViewAssessments = ({ assessments, isAdmin, accessToken, fetchAssessments }
                                 <p className="text-danger">Please enter a valid score (0-4).</p>
                               ) : null}
                               </div>
-                          ) : (
-                            skill.score
-                          )}
+                          ) : scoreFormat(skill.score)}
                         </td>
                       </tr>
                     ))}

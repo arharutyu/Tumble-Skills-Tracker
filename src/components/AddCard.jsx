@@ -6,7 +6,7 @@ const AddCard = ({ type, link }) => {
   
   return (
     <>
-    <Card>
+    <Card className="border-1" border="primary">
       <Card.Body>
         <Card.Title>
         <Link to={link}>

@@ -1,10 +1,7 @@
 import '@testing-library/jest-dom'
-
 import { render, screen } from './TestSetup.js'
 import App from '../components/App.jsx'
-import { BrowserRouter } from 'react-router-dom'
 import Home from '../routes/Home.jsx'
-import Students from '../routes/Students.jsx'
 import NavBar from '../components/NavBar.jsx'
 
 describe('App Component', () => {
@@ -21,13 +18,13 @@ describe('NavBar Component', () => {
     render(<NavBar />);
 
     const navLinks = screen.getAllByRole('link')
-    expect(navLinks).toHaveLength(5)
+    expect(navLinks).toHaveLength(6)
 
-    expect(navLinks[0]).toHaveTextContent('Home')
-    expect(navLinks[1]).toHaveTextContent('Students')
-    expect(navLinks[2]).toHaveTextContent('Skills')
-    expect(navLinks[3]).toHaveTextContent('New Assessment')
-    expect(navLinks[4]).toHaveTextContent('Users')
+    expect(navLinks[1]).toHaveTextContent('Home')
+    expect(navLinks[2]).toHaveTextContent('Students')
+    expect(navLinks[3]).toHaveTextContent('Skills')
+    expect(navLinks[4]).toHaveTextContent('New Assessment')
+    expect(navLinks[5]).toHaveTextContent('Users')
 
     expect(screen.queryByRole('img')).not.toBeNull()
   })
